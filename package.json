@@ -12,6 +12,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
     "@tailwindcss/vite": "^4.3.2",
     "astro": "^7.0.7",
     "tailwindcss": "^4.3.2"

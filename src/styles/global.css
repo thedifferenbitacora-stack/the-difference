@@ -1,148 +1,27 @@
-@import "tailwindcss";
-
-:root {
-  color-scheme: dark;
-}
-
-body {
-  background-color: black;
-  color: white;
-  font-family: sans-serif;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
-
-.screen {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  min-height: 100vh;
-  text-align: center;
-  padding: 60px 20px;
+* {
   box-sizing: border-box;
 }
 
-.flex-center {
-  justify-content: center;
-}
-
-.main-img {
-  width: 300px;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 6px solid white;
-  margin-bottom: 20px;
-}
-
-.subtitle {
-  font-size: 1.2rem;
-  letter-spacing: 0.15em;
-  color: #9ca3af;
-  text-transform: uppercase;
-  margin-bottom: 30px;
-}
-
-.btn-main {
-  border: 6px solid white;
-  padding: 30px 60px;
-  font-size: 40px;
-  font-weight: bold;
-  text-transform: uppercase;
-  cursor: pointer;
-  background: transparent;
-  color: white;
-  transition: 0.3s;
-  margin-bottom: 60px;
-}
-
-.btn-main:hover {
-  border-color: hotpink;
-  color: hotpink;
-}
-
-.manifesto-container {
-  max-width: 800px;
-  text-align: left;
-  font-family: monospace;
-  line-height: 1.8;
-  margin-top: 40px;
-  border-top: 1px solid #333;
-  padding-top: 40px;
-}
-
-.manifesto-title {
-  color: hotpink;
-  font-size: 1.5rem;
-  letter-spacing: 0.2em;
-  margin-bottom: 30px;
-  text-transform: uppercase;
-}
-
-.manifesto-p {
-  font-size: 1.15rem;
-  color: #e5e7eb;
-  margin-bottom: 25px;
-}
-
-.manifesto-p-alt {
-  font-size: 1.15rem;
-  color: #9ca3af;
-  margin-bottom: 25px;
-}
-
-.manifesto-quote {
-  border-left: 4px solid yellow;
-  padding-left: 20px;
-  font-size: 1.25rem;
-  color: yellow;
-  margin-top: 40px;
-  font-style: italic;
-}
-
-
-
-.btn-diff {
-  border: 8px solid white;
-  padding: 40px 80px;
-  font-size: 80px;
-  font-weight: 900;
-  text-transform: uppercase;
-  margin-bottom: 50px;
-  cursor: pointer;
-  background: transparent;
-  color: white;
-  transition: 0.3s;
-}
-
-.btn-diff:hover {
-  border-color: hotpink;
-  color: hotpink;
-}
-
-.nav-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  max-width: 1000px;
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #000 !important;
+  color: #fff !important;
+  font-family: 'Courier New', Courier, monospace;
+  min-height: 100vh;
 }
 
 .nav-btn {
-  border: 4px solid white;
-  padding: 20px 40px;
-  font-size: 24px;
-  font-weight: bold;
-  color: yellow;
-  text-decoration: none;
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-family: 'Courier New', Courier, monospace;
   transition: 0.3s;
-  text-transform: uppercase;
 }
 
 .nav-btn:hover {
-  border-color: hotpink;
-  color: hotpink;
+  border-color: #ff3e96;
+  color: #ff3e96;
 }

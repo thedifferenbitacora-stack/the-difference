@@ -1,18 +1,16 @@
 ---
-import '../styles/global.css';
-
-interface Props {
-  title: string;
-}
-const { title } = Astro.props;
 ---
-<!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <title>{title}</title>
-  </head>
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <style is:global>
+        body { background-color: #000; color: #fff; margin: 0; font-family: 'Courier New', Courier, monospace; }
+        /* Estilo base para botones */
+        .btn-nav { background: transparent; border: 1px solid #fff; color: #fff; padding: 8px 16px; cursor: pointer; text-decoration: none; font-family: 'Courier New', Courier, monospace; transition: 0.3s; }
+        .btn-nav:hover { border-color: #ff3e96; color: #ff3e96; }
+    </style>
+</head>
+<body>
     <slot />
-  </body>
+</body>
 </html>

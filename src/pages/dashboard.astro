@@ -1,32 +1,41 @@
 ---
-// src/pages/dashboard.astro
+import Base from '../layouts/Base.astro';
 ---
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <title>Dashboard</title>
-  <style>
-    body { background-color: black; color: white; font-family: sans-serif; margin: 0; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; text-align: center; }
-    .btn-diff { border: 8px solid white; padding: 40px 80px; font-size: 80px; font-weight: 900; text-transform: uppercase; margin-bottom: 50px; cursor: pointer; background: transparent; color: white; text-decoration: none; }
-    .btn-diff:hover { border-color: hotpink; color: hotpink; }
-    .nav-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 1000px; }
-    .nav-btn { border: 4px solid white; padding: 20px 40px; font-size: 24px; font-weight: bold; color: yellow; text-decoration: none; transition: 0.3s; text-transform: uppercase; }
-    .nav-btn:hover { border-color: hotpink; color: hotpink; }
-  </style>
-</head>
-<body>
-  <a href="/" class="btn-diff">THE DIFFERENCE</a>
-  <div class="nav-grid">
-    <a href="/log" class="nav-btn">LOG</a>
-    <a href="/le-tematik" class="nav-btn">LE TEMATIK</a>
-    <a href="/nada-brahma" class="nav-btn">PROJECT NADA BRAHMA</a>
-    <a href="/texvn" class="nav-btn">TEXVN</a>
-    <a href="/quantumlab" class="nav-btn">QUANTUMLAB</a>
-    <a href="/pensamiento-autista" class="nav-btn">PENSAMIENTO AUTISTA</a>
-    <a href="/saiayin-do" class="nav-btn">SAIAYIN DO</a>
-    <a href="/ars-tekne" class="nav-btn">ARS TEKNE</a>
-    <a href="/quiron-theatre" class="nav-btn">QUIRÓN THEATRE</a>
-  </div>
-</body>
-</html>
+
+<Base title="Quantum Core // Dashboard">
+    <div style="padding: 20px;"><a href="/">VOLVER A INICIO</a></div>
+    <h1>QUANTUM CORE // DASHBOARD</h1>
+    
+    <div class="grid">
+        <div class="box">
+            <div class="header">[01] TÉCNICO // RESPALDO</div>
+            <button id="btn-backup" style="width: 100%;">EJECUTAR RESPALDO // ANTÍTESIS</button>
+            <div id="log-tech" style="margin-top: 15px;"></div>
+        </div>
+    </div>
+
+    <script>
+        const btnBackup = document.getElementById('btn-backup') as HTMLButtonElement;
+        const logTech = document.getElementById('log-tech') as HTMLElement;
+
+        btnBackup?.addEventListener('click', async () => {
+            logTech.innerHTML = "<p>> Procesando Antítesis...</p>";
+            btnBackup.innerText = "ESPERANDO...";
+            
+            try {
+                const res = await fetch('/api/backup', { method: 'POST' });
+                const data = await res.json();
+                
+                if (res.ok && data.success) {
+                    logTech.innerHTML = "<p style='color: #32cd32'>> ANTÍTESIS COMPLETA. LISTO PARA SÍNTESIS.</p>";
+                } else {
+                    logTech.innerHTML = `<p style='color: red'>> Error: ${data.error || 'Falla de conexión'}</p>`;
+                }
+            } catch (e) {
+                logTech.innerHTML = "<p style='color: red'>> Error crítico en la red.</p>";
+            } finally {
+                btnBackup.innerText = "EJECUTAR RESPALDO // ANTÍTESIS";
+            }
+        });
+    </script>
+</Base>
