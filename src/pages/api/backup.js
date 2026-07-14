@@ -4,8 +4,7 @@ export const prerender = false;
 
 export async function POST() {
     return new Promise((resolve) => {
-        // Usamos una sintaxis más robusta para el commit
-        const cmd = 'git add . && git commit -m "Backup_automatico_Quantum_Core" && git push origin main';
+        const cmd = 'git add . && git commit -m "Backup_automatico" && git push origin main';
         const child = spawn('cmd.exe', ['/c', cmd]);
 
         let output = '';
