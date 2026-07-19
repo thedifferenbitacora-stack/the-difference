@@ -1,41 +1,274 @@
 ---
-import Base from '../layouts/Base.astro';
+import Layout from '../layouts/Layout.astro';
+import MenuReturn from '../components/MenuReturn.astro';
+
+const API_URL = "PEGUE_AQUI_LA_URL_DE_LA_APLICACION_WEB";
+let nodosData = [];
+let modulosBIOS = [];
+let bitacoraData = [];
+let systemStatus = "DISCONNECTED";
+
+const fallbacks = {
+  nodos: [
+    { id: "log", nombre: "LOG", link: "/log", status: "READY", icono: "📋" },
+    { id: "le-tematik", nombre: "LE TEMATIK", link: "/le-tematik", status: "READY", icono: "🎵" },
+    { id: "nada-brahma", nombre: "PROJECT NADA BRAHMA", link: "/nada-brahma", status: "ACTIVE", icono: "🕉️" },
+    { id: "texvn", nombre: "TEXVN", link: "/texvn", status: "ONLINE", icono: "⚙️" },
+    { id: "quantumlab", nombre: "QUANTUMLAB", link: "/quantumlab", status: "ONLINE", icono: "" },
+    { id: "pensamiento-autista", nombre: "PENSAMIENTO AUTISTA", link: "/pensamiento-autista", status: "ACTIVE", icono: "🧩" },
+    { id: "saiayin-do", nombre: "SAIAYIN DO", link: "/saiayin-do", status: "READY", icono: "⚡" },
+    { id: "ars-tekne", nombre: "ARS TEKNE", link: "/ars-tekne", status: "SECURE", icono: "🏛️" },
+    { id: "quiron-theatre", nombre: "QUIRÓN THEATRE", link: "/quiron-theatre", status: "READY", icono: "🎭" }
+  ],
+  bios: [
+    { id: "panel-edicion", nombre: "PANEL_EDICION_NUCLEO", status: "SYNC_EXCEL", type: "STORAGE_SESSION" },
+    { id: "programacion-sistema", nombre: "PROGRAMACION_SISTEMA_BIOS", status: "ONLINE", type: "CORE_MODULE" },
+    { id: "session-control", nombre: "PROP_SESSION_TOKEN", status: "ACTIVE", type: "AUTH_MODULE" },
+    { id: "functional-backup", nombre: "BACKUP_FUNCTIONAL_HTML", status: "SECURE", type: "BACKUP_MODULE" }
+  ]
+};
+
+nodosData = fallbacks.nodos;
+modulosBIOS = fallbacks.bios;
+
+if (API_URL && !API_URL.includes("PEGUE_AQUI") && API_URL.endsWith("/exec")) {
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
+    const response = await fetch(API_URL, { method: 'GET', headers: { 'Accept': 'application/json' }, signal: controller.signal });
+    clearTimeout(timeoutId);
+    const rawText = await response.text();
+    if (rawText.trim().startsWith('{')) {
+      const json = JSON.parse(rawText);
+      if (json.success) {
+        nodosData = json.nodos?.length > 0 ? json.nodos : fallbacks.nodos;
+        modulosBIOS = json.modulosBIOS?.length > 0 ? json.modulosBIOS : fallbacks.bios;
+        bitacoraData = json.bitacora || [];
+        systemStatus = "ONLINE";
+      } else {
+        systemStatus = "API_ERROR";
+      }
+    } else {
+      systemStatus = "AUTH_REQUIRED";
+    }
+  } catch (error) {
+    systemStatus = "TIMEOUT_OR_OFFLINE";
+  }
+} else {
+  systemStatus = API_URL.includes("PEGUE_AQUI") ? "CONFIG_PENDING" : "INVALID_URL";
+}
 ---
 
-<Base title="Quantum Core // Dashboard">
-    <div style="padding: 20px;"><a href="/">VOLVER A INICIO</a></div>
-    <h1>QUANTUM CORE // DASHBOARD</h1>
-    
-    <div class="grid">
-        <div class="box">
-            <div class="header">[01] TÉCNICO // RESPALDO</div>
-            <button id="btn-backup" style="width: 100%;">EJECUTAR RESPALDO // ANTÍTESIS</button>
-            <div id="log-tech" style="margin-top: 15px;"></div>
+<Layout title="The Difference - Dashboard BIOS">
+  
+  <MenuReturn href="/menu" label="THE DIFFERENCE" />
+
+  <main class="dashboard-terminal">
+    <header class="terminal-header">
+      <div class="brand">
+        <h1>THE DIFFERENCE</h1>
+        <p class="subtitle">MOOD GENIUS PLATFORM // SYSTEM LOG HUMAN</p>
+      </div>
+      <div class={`system-badge ${systemStatus.toLowerCase().replace(/_/g, '-')}`}>
+        <span class="pulse-dot"></span>
+        <span class="status-text">SYS_STATUS: {systemStatus}</span>
+      </div>
+    </header>
+
+    <hr class="terminal-divider" />
+
+    <section class="texvn-recuadro">
+      <div class="panel-header-text">[ SECCIÓN COGNITIVA / TRIADA DIALÉCTICA ]</div>
+      <div class="triada-botones">
+        <button class="btn-ontologico" data-tipo="TESIS"><span class="btn-title">TESIS</span><span class="btn-subtext">Fenómeno Puro</span></button>
+        <button class="btn-ontologico" data-tipo="ANTÍTESIS"><span class="btn-title">ANTÍTESIS</span><span class="btn-subtext">Reacción / Código</span></button>
+        <button class="btn-ontologico" data-tipo="SÍNTESIS"><span class="btn-title">SÍNTESIS</span><span class="btn-subtext">Comprensión</span></button>
+      </div>
+    </section>
+
+    <section class="bios-grid">
+      <div class="bios-panel">
+        <div class="panel-header-text">[ CONFIGURACIÓN BIOS_CORE ]</div>
+        <div class="table-container">
+          <table class="terminal-table">
+            <thead><tr><th>MÓDULO</th><th>TIPO</th><th>ESTADO</th></tr></thead>
+            <tbody>
+              {modulosBIOS.map((modulo) => {
+                const validos = ["SYNC_EXCEL", "ONLINE", "READY", "SECURE", "ACTIVE"];
+                const clase = validos.includes(modulo.status) ? "active-green" : "status-error";
+                return (<tr><td class="mono">{modulo.nombre}</td><td class="dim">{modulo.type}</td><td class={`status-cell ${clase}`}>{modulo.status}</td></tr>);
+              })}
+            </tbody>
+          </table>
         </div>
-    </div>
+      </div>
 
-    <script>
-        const btnBackup = document.getElementById('btn-backup') as HTMLButtonElement;
-        const logTech = document.getElementById('log-tech') as HTMLElement;
+      <div class="console-panel">
+        <div class="panel-header-text">[ CONSOLA DE ENTRADA ]</div>
+        <div class="console-box">
+          <div class="console-output" id="consoleOutput">
+            <p class="system-msg">> Sistema en espera...</p>
+          </div>
+          <div class="console-input-area">
+            <span class="prompt-char">&gt;</span>
+            <input type="text" id="terminalInput" placeholder="Escribe aquí..." disabled />
+            <button id="sendBtn" disabled>VOLCAR</button>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        btnBackup?.addEventListener('click', async () => {
-            logTech.innerHTML = "<p>> Procesando Antítesis...</p>";
-            btnBackup.innerText = "ESPERANDO...";
-            
-            try {
-                const res = await fetch('/api/backup', { method: 'POST' });
-                const data = await res.json();
-                
-                if (res.ok && data.success) {
-                    logTech.innerHTML = "<p style='color: #32cd32'>> ANTÍTESIS COMPLETA. LISTO PARA SÍNTESIS.</p>";
-                } else {
-                    logTech.innerHTML = `<p style='color: red'>> Error: ${data.error || 'Falla de conexión'}</p>`;
-                }
-            } catch (e) {
-                logTech.innerHTML = "<p style='color: red'>> Error crítico en la red.</p>";
-            } finally {
-                btnBackup.innerText = "EJECUTAR RESPALDO // ANTÍTESIS";
-            }
-        });
-    </script>
-</Base>
+    <section class="scroll-panel-nodos">
+      <div class="panel-header-text">[ NODOS DE PROYECTOS ]</div>
+      <div class="scroll-container">
+        {nodosData.map((nodo) => (
+          <a href={nodo.link} class="nodo-row" id={nodo.id}>
+            <div class="nodo-meta"><span class="nodo-icon">{nodo.icono || '•'}</span><span class="nodo-name">{nodo.nombre}</span></div>
+            <div class="nodo-line-divider"></div>
+            <div class="nodo-status"><span class="status-lbl">STATUS:</span><span class="status-val">{nodo.status || 'ONLINE'}</span></div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="bitacora-global-panel">
+      <div class="panel-header-text">[ BITÁCORA GLOBAL ]</div>
+      <div class="bitacora-stream">
+        {bitacoraData.length === 0 ? (
+          <p class="dim indent">> No hay registros recientes.</p>
+        ) : (
+          bitacoraData.map((entrada) => (
+            <div class="bitacora-entry">
+              <span class="entry-time">[{entrada.timestamp}]</span>
+              <span class="entry-proj">[{entrada.proyecto}]</span>
+              <span class="entry-type">[{entrada.tipo}]:</span>
+              <span class="entry-content">{entrada.contenido}</span>
+              <span class="entry-user">~ {entrada.usuario}</span>
+            </div>
+          ))
+        )}
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  :root { --color-black: #000000; --color-white: #ffffff; --color-pink: #ff3e96; --color-green-terminal: #00ff00; --color-dim: #555555; --border-alpha: rgba(255, 255, 255, 0.15); --font-mono: 'Courier New', Courier, monospace; --font-sans: 'Impact', 'Arial Black', sans-serif; }
+  body { background-color: var(--color-black) !important; color: var(--color-white); margin: 0; padding: 0; }
+  .dashboard-terminal { font-family: var(--font-mono); background-color: var(--color-black); padding: 20px; max-width: 1400px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; box-sizing: border-box; }
+  .terminal-divider { border: 0; border-top: 1px solid var(--border-alpha); margin: 0; width: 100%; }
+  .panel-header-text { font-size: 0.8rem; color: var(--color-white); letter-spacing: 2px; margin-bottom: 10px; font-weight: bold; }
+  .terminal-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+  .brand h1 { font-family: var(--font-sans); font-size: 2.8rem; margin: 0; letter-spacing: 2px; line-height: 1; }
+  .subtitle { margin: 5px 0 0 0; font-size: 0.85rem; color: var(--color-white); letter-spacing: 1px; }
+  .system-badge { display: flex; align-items: center; gap: 10px; border: 1px solid var(--border-alpha); padding: 8px 16px; font-size: 0.85rem; font-weight: bold; }
+  .system-badge.online { border-color: var(--color-green-terminal); color: var(--color-green-terminal); }
+  .system-badge.disconnected, .system-badge.api-error, .system-badge.auth-required, .system-badge.timeout-or-offline, .system-badge.config-pending, .system-badge.invalid-url { border-color: #ff3333; color: #ff3333; }
+  .pulse-dot { width: 8px; height: 8px; border-radius: 50%; background-color: currentColor; box-shadow: 0 0 8px currentColor; }
+  .texvn-recuadro { border: 1px solid var(--border-alpha); padding: 15px; }
+  .triada-botones { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px; }
+  .btn-ontologico { background: transparent; border: 1px solid var(--color-white); color: var(--color-white); padding: 15px; cursor: pointer; font-family: var(--font-mono); text-align: left; display: flex; flex-direction: column; gap: 5px; transition: all 0.2s ease; }
+  .btn-ontologico:hover, .btn-ontologico.active { background-color: var(--color-pink); border-color: var(--color-pink); color: var(--color-black); }
+  .btn-title { font-family: var(--font-sans); font-size: 1.4rem; letter-spacing: 1px; }
+  .btn-subtext { font-size: 0.75rem; opacity: 0.8; }
+  .bios-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); gap: 20px; }
+  .bios-panel, .console-panel { border: 1px solid var(--border-alpha); padding: 15px; display: flex; flex-direction: column; }
+  .table-container { overflow-x: auto; width: 100%; }
+  .terminal-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.85rem; }
+  .terminal-table th { border-bottom: 1px solid var(--color-white); padding: 10px 8px; font-weight: bold; color: var(--color-white); }
+  .terminal-table td { padding: 12px 8px; border-bottom: 1px solid var(--border-alpha); }
+  .terminal-table tbody tr:hover { background-color: var(--color-pink); color: var(--color-black); }
+  .mono { font-family: var(--font-mono); }
+  .dim { color: var(--color-dim); }
+  .active-green { color: var(--color-green-terminal); font-weight: bold; }
+  .status-error { color: #ff3333; font-weight: bold; }
+  .console-box { flex-grow: 1; display: flex; flex-direction: column; background-color: #050505; border: 1px solid var(--border-alpha); }
+  .console-output { padding: 15px; min-height: 120px; max-height: 150px; overflow-y: auto; font-size: 0.85rem; line-height: 1.4; border-bottom: 1px solid var(--border-alpha); }
+  .system-msg { color: var(--color-green-terminal); margin: 0; }
+  .user-msg { color: var(--color-white); margin: 5px 0 0 0; }
+  .console-input-area { display: flex; align-items: center; padding: 10px; gap: 10px; }
+  .prompt-char { color: var(--color-pink); font-weight: bold; }
+  .console-input-area input { flex-grow: 1; background: transparent; border: none; color: var(--color-white); font-family: var(--font-mono); font-size: 0.85rem; outline: none; }
+  .console-input-area input:disabled { cursor: not-allowed; opacity: 0.5; }
+  .console-input-area button { background: transparent; border: 1px solid var(--color-white); color: var(--color-white); font-family: var(--font-mono); font-size: 0.75rem; padding: 5px 15px; cursor: pointer; }
+  .console-input-area button:hover:not(:disabled) { background-color: var(--color-white); color: var(--color-black); }
+  .console-input-area button:disabled { opacity: 0.3; cursor: not-allowed; }
+  .scroll-panel-nodos { border: 1px solid var(--border-alpha); padding: 15px; }
+  .scroll-container { max-height: 450px; overflow-y: auto; display: flex; flex-direction: column; gap: 4px; padding-right: 5px; }
+  .scroll-container::-webkit-scrollbar { width: 6px; }
+  .scroll-container::-webkit-scrollbar-track { background: var(--color-black); }
+  .scroll-container::-webkit-scrollbar-thumb { background: var(--border-alpha); border-radius: 3px; }
+  .scroll-container::-webkit-scrollbar-thumb:hover { background: var(--color-pink); }
+  .nodo-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 10px; text-decoration: none; color: var(--color-white); border-bottom: 1px solid rgba(255, 255, 255, 0.05); transition: background 0.1s ease; }
+  .nodo-row:hover { background-color: var(--color-pink) !important; color: var(--color-black) !important; }
+  .nodo-meta { display: flex; align-items: center; gap: 12px; min-width: 240px; }
+  .nodo-icon { font-size: 1.1rem; }
+  .nodo-name { font-family: var(--font-sans); font-size: 1.25rem; letter-spacing: 1px; }
+  .nodo-line-divider { flex-grow: 1; border-bottom: 1px dotted var(--border-alpha); margin: 0 20px; height: 1px; }
+  .nodo-row:hover .nodo-line-divider { border-bottom-color: var(--color-black); }
+  .nodo-status { display: flex; gap: 8px; font-size: 0.8rem; }
+  .status-lbl { opacity: 0.6; }
+  .nodo-row:hover .status-lbl { opacity: 1; }
+  .status-val { font-weight: bold; color: var(--color-green-terminal); }
+  .nodo-row:hover .status-val { color: var(--color-black); }
+  .bitacora-global-panel { border: 1px solid var(--border-alpha); padding: 15px; }
+  .bitacora-stream { max-height: 250px; overflow-y: auto; font-size: 0.8rem; display: flex; flex-direction: column; gap: 8px; }
+  .bitacora-entry { padding: 4px 0; line-height: 1.4; border-bottom: 1px solid rgba(255, 255, 255, 0.02); }
+  .entry-time { color: var(--color-dim); margin-right: 5px; }
+  .entry-proj { color: var(--color-pink); font-weight: bold; margin-right: 5px; }
+  .entry-type { color: var(--color-green-terminal); margin-right: 8px; }
+  .entry-content { color: var(--color-white); }
+  .entry-user { color: var(--color-dim); font-size: 0.75rem; margin-left: 10px; }
+</style>
+
+<script define:vars={{ API_URL }}>
+  const botones = document.querySelectorAll('.btn-ontologico');
+  const termInput = document.getElementById('terminalInput');
+  const sendBtn = document.getElementById('sendBtn');
+  const consoleOutput = document.getElementById('consoleOutput');
+  let loopSeleccionado = "";
+
+  botones.forEach(btn => {
+    btn.addEventListener('click', () => {
+      botones.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      loopSeleccionado = btn.getAttribute('data-tipo');
+      termInput.disabled = false;
+      sendBtn.disabled = false;
+      termInput.placeholder = `Escribe para ${loopSeleccionado}...`;
+      termInput.focus();
+      imprimirEnConsola(`> Bucle fijado: [${loopSeleccionado}]`);
+    });
+  });
+
+  sendBtn.addEventListener('click', ejecutarEnvio);
+  termInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') ejecutarEnvio(); });
+
+  async function ejecutarEnvio() {
+    const texto = termInput.value.trim();
+    if (!texto || !loopSeleccionado) return;
+    termInput.disabled = true;
+    sendBtn.disabled = true;
+    imprimirEnConsola(`> Transmitiendo...`);
+    try {
+      const payload = { proyecto: "QUANTUM LAB", tipo: loopSeleccionado, contenido: texto, usuario: "Operador" };
+      await fetch(API_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+      imprimirEnConsola(`+ [ÉXITO] Registro guardado.`);
+      termInput.value = "";
+    } catch (err) {
+      imprimirEnConsola(`- [ERROR] ${err.message}`);
+    } finally {
+      termInput.disabled = false;
+      sendBtn.disabled = false;
+      termInput.focus();
+    }
+  }
+
+  function imprimirEnConsola(msg) {
+    const p = document.createElement('p');
+    p.className = "user-msg";
+    p.textContent = msg;
+    consoleOutput.appendChild(p);
+    consoleOutput.scrollTop = consoleOutput.scrollHeight;
+  }
+</script>

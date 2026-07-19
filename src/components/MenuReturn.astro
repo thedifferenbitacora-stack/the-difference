@@ -1,0 +1,49 @@
+---
+export interface Props {
+  href?: string;
+  label?: string;
+}
+
+const { href = "/menu", label = "THE DIFFERENCE" } = Astro.props;
+---
+
+<a href={href} class="menu-return-btn" aria-label="Retornar al menú principal">
+  {label}
+</a>
+
+<style>
+  .menu-return-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 9999;
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #000000;
+    border: 2px solid #ffffff;
+    color: #ffff00;
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.2s ease;
+  }
+
+  .menu-return-btn:hover {
+    background-color: #ffff00;
+    color: #000000;
+    border-color: #ffff00;
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 768px) {
+    .menu-return-btn {
+      top: 10px;
+      left: 10px;
+      padding: 10px 20px;
+      font-size: 0.9rem;
+    }
+  }
+</style>

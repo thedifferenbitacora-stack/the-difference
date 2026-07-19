@@ -1,0 +1,235 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="THE DIFFERENCE // GENESIS - TESIS">
+  <main class="moment-page genesis-page">
+    
+    <header class="moment-header">
+      <a href="/" class="back-link">← VOLVER AL INICIO</a>
+      <nav class="moment-nav">
+        <a href="/tesis" class="nav-active">GENESIS</a>
+        <a href="/antitesis" class="nav-link">ANTITESIS</a>
+        <a href="/sintesis" class="nav-link">SINTESIS</a>
+      </nav>
+    </header>
+
+    <div class="moment-container">
+      <div class="moment-badge genesis-badge">[GENESIS]</div>
+      
+      <h1 class="moment-title">EL ORIGEN</h1>
+      <h2 class="moment-subtitle">TESIS FUNDACIONAL</h2>
+
+      <div class="moment-content">
+        <div class="content-block">
+          <h3>Neurodivergence + Creative Philosophy + System Log Human + ARS TEKNE + AI</h3>
+          <p>QuantumLab es un laboratorio de investigación, creación y desarrollo donde convergen filosofía, arte, tecnología e inteligencia artificial para explorar nuevas formas de comprender la experiencia humana.</p>
+        </div>
+
+        <div class="content-block highlight">
+          <h3>El Pensamiento Autista como Fundamento</h3>
+          <p>Su fundamento es el <strong>Pensamiento Autista</strong>, entendido no como una categoría clínica, sino como un <strong>modelo epistemológico</strong> que privilegia:</p>
+          <ul class="feature-list">
+            <li>La observación profunda</li>
+            <li>El reconocimiento de patrones</li>
+            <li>La fenomenología</li>
+            <li>El pensamiento crítico</li>
+            <li>La creación de sistemas</li>
+          </ul>
+        </div>
+
+        <div class="moment-footer-nav">
+          <span class="footer-label">Este es el comienzo del viaje</span>
+          <a href="/antitesis" class="next-link">ANTITESIS →</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</Layout>
+
+<style>
+  :root {
+    --bg-dark: #000000;
+    --text-white: #ffffff;
+    --punk-pink: #ff3e96;
+    --matrix-green: #00ff00;
+    --border-color: rgba(255, 255, 255, 0.2);
+    --font-mono: 'Courier New', Courier, monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  .moment-page {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    font-family: var(--font-mono);
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+
+  .moment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 60px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .back-link {
+    color: var(--text-white);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+  }
+
+  .back-link:hover { color: var(--punk-pink); }
+
+  .moment-nav {
+    display: flex;
+    gap: 30px;
+  }
+
+  .nav-link, .nav-active {
+    font-size: 13px;
+    text-decoration: none;
+    letter-spacing: 2px;
+    padding: 8px 16px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s;
+  }
+
+  .nav-link:hover {
+    border-color: var(--punk-pink);
+    color: var(--punk-pink);
+  }
+
+  .nav-active {
+    border-color: var(--matrix-green);
+    color: var(--matrix-green);
+    font-weight: bold;
+  }
+
+  .moment-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .moment-badge {
+    font-size: 11px;
+    letter-spacing: 3px;
+    padding: 8px 20px;
+    border: 1px solid var(--matrix-green);
+    color: var(--matrix-green);
+    display: inline-block;
+    margin-bottom: 30px;
+  }
+
+  .genesis-badge { border-color: var(--matrix-green); color: var(--matrix-green); }
+
+  .moment-title {
+    font-size: 4rem;
+    letter-spacing: 0.2rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: normal;
+  }
+
+  .moment-subtitle {
+    font-size: 1.5rem;
+    color: var(--matrix-green);
+    margin-bottom: 60px;
+    letter-spacing: 0.1rem;
+  }
+
+  .moment-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .content-block {
+    padding: 30px;
+    border: 1px solid var(--border-color);
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .content-block h3 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: var(--text-white);
+    font-weight: normal;
+    letter-spacing: 0.05rem;
+  }
+
+  .content-block p {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: #b0b0b0;
+    text-align: justify;
+  }
+
+  .content-block.highlight {
+    border-left: 3px solid var(--matrix-green);
+    background: rgba(0, 255, 0, 0.03);
+  }
+
+  .feature-list {
+    list-style: none;
+    margin-top: 20px;
+    padding-left: 10px;
+  }
+
+  .feature-list li {
+    padding: 10px 0 10px 30px;
+    position: relative;
+    font-size: 1rem;
+    color: #c0c0c0;
+    line-height: 1.6;
+  }
+
+  .feature-list li::before {
+    content: "▹";
+    position: absolute;
+    left: 0;
+    color: var(--matrix-green);
+  }
+
+  .moment-footer-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .footer-label {
+    font-size: 12px;
+    color: #666;
+    letter-spacing: 1px;
+  }
+
+  .next-link {
+    font-size: 1.2rem;
+    color: var(--matrix-green);
+    text-decoration: none;
+    letter-spacing: 2px;
+    border: 1px solid var(--matrix-green);
+    padding: 12px 30px;
+    transition: all 0.3s;
+  }
+
+  .next-link:hover {
+    background: var(--matrix-green);
+    color: var(--bg-dark);
+  }
+
+  @media (max-width: 768px) {
+    .moment-title { font-size: 2.5rem; }
+    .moment-subtitle { font-size: 1.1rem; }
+    .moment-nav { flex-direction: column; gap: 10px; }
+    .content-block { padding: 20px; }
+  }
+</style>
