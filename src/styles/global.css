@@ -1,27 +1,9 @@
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  background-color: #000 !important;
-  color: #fff !important;
-  font-family: 'Courier New', Courier, monospace;
-  min-height: 100vh;
-}
-
-.nav-btn {
-  background: transparent;
-  border: 1px solid #fff;
-  color: #fff;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-family: 'Courier New', Courier, monospace;
-  transition: 0.3s;
-}
-
-.nav-btn:hover {
-  border-color: #ff3e96;
-  color: #ff3e96;
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

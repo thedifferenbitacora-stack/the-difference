@@ -1,0 +1,468 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MenuReturn from '../components/MenuReturn.astro';
+import fs from 'fs/promises';
+import path from 'path';
+
+let tareas: any[] = [];
+try {
+  const tareasPath = path.join(process.cwd(), '01_BITACORA_GLOBAL', 'TAREAS_PROYECTOS.json');
+  const data = await fs.readFile(tareasPath, 'utf-8');
+  tareas = JSON.parse(data);
+} catch (e) {
+  tareas = [];
+}
+
+const nodos = [
+  { id: 'log', nombre: 'LOG' },
+  { id: 'le-tematik', nombre: 'LE TEMATIK' },
+  { id: 'nada-brahma', nombre: 'NADA BRAHMA' },
+  { id: 'texvn', nombre: 'TEXVN' },
+  { id: 'quantumlab', nombre: 'QUANTUMLAB' },
+  { id: 'pensamiento-autista', nombre: 'PENSAMIENTO AUTISTA' },
+  { id: 'saiayin-do', nombre: 'SAIAYIN DO' },
+  { id: 'ars-tekne', nombre: 'ARS TEKNE' },
+  { id: 'quiron-theatre', nombre: 'QUIRÓN THEATRE' }
+];
+
+const estados = ['PENDIENTE', 'EN_PROCESO', 'FINALIZADO'];
+const prioridades = ['BAJA', 'MEDIA', 'ALTA', 'CRÍTICA'];
+
+const conteoPorEstado = {
+  PENDIENTE: tareas.filter(t => t.estado === 'PENDIENTE').length,
+  EN_PROCESO: tareas.filter(t => t.estado === 'EN_PROCESO').length,
+  FINALIZADO: tareas.filter(t => t.estado === 'FINALIZADO').length,
+  TOTAL: tareas.length
+};
+---
+
+<Layout title="GEIST // Gestión de Tareas por Proyecto">
+  <MenuReturn href="/dashboard" label="THE DIFFERENCE" />
+
+  <main class="tareas-main">
+    <header class="tareas-header">
+      <h1>GEIST // GESTIÓN DE TAREAS POR PROYECTO</h1>
+      <p class="subtitle">Panel de escritura directa · Base de datos local · Bitácora consciente</p>
+    </header>
+
+    <!-- ESTADÍSTICAS -->
+    <section class="stats-grid">
+      <div class="stat-card stat-pendiente">
+        <div class="stat-num">{conteoPorEstado.PENDIENTE}</div>
+        <div class="stat-label">PENDIENTES</div>
+      </div>
+      <div class="stat-card stat-proceso">
+        <div class="stat-num">{conteoPorEstado.EN_PROCESO}</div>
+        <div class="stat-label">EN PROCESO</div>
+      </div>
+      <div class="stat-card stat-finalizado">
+        <div class="stat-num">{conteoPorEstado.FINALIZADO}</div>
+        <div class="stat-label">FINALIZADOS</div>
+      </div>
+      <div class="stat-card stat-total">
+        <div class="stat-num">{conteoPorEstado.TOTAL}</div>
+        <div class="stat-label">TOTAL</div>
+      </div>
+    </section>
+
+    <!-- FORMULARIO DE NUEVA TAREA -->
+    <section class="form-section">
+      <h2><span class="icon">+</span> REGISTRAR NUEVA TAREA</h2>
+      <form id="form-tarea" class="tarea-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nodo / Taller</label>
+            <select name="nodo" id="input-nodo" required>
+              {nodos.map(n => <option value={n.id}>{n.nombre}</option>)}
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Proyecto</label>
+            <input type="text" name="proyecto" id="input-proyecto" placeholder="Ej: Upgrade GPU" required />
+          </div>
+          <div class="form-group">
+            <label>Título</label>
+            <input type="text" name="titulo" id="input-titulo" placeholder="Título de la tarea" required />
+          </div>
+        </div>
+
+        <div class="form-group full">
+          <label>Descripción</label>
+          <textarea name="descripcion" id="input-descripcion" rows="2" placeholder="Describe la tarea..."></textarea>
+        </div>
+
+        <div class="form-group full">
+          <label>¿Qué falta para terminar?</label>
+          <textarea name="que_falta" id="input-que-falta" rows="2" placeholder="Pasos pendientes, bloqueos, recursos necesarios..."></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Estado</label>
+            <select name="estado" id="input-estado">
+              {estados.map(e => <option value={e}>{e}</option>)}
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Prioridad</label>
+            <select name="prioridad" id="input-prioridad">
+              {prioridades.map(p => <option value={p}>{p}</option>)}
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Energía Costo (1-10)</label>
+            <input type="number" name="energia_costo" id="input-costo" min="1" max="10" placeholder="7" />
+          </div>
+          <div class="form-group">
+            <label>Energía Valor (1-10)</label>
+            <input type="number" name="energia_valor" id="input-valor" min="1" max="10" placeholder="9" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Biotipo detectado</label>
+            <select name="biotipo" id="input-biotipo">
+              <option value="">-- Seleccionar --</option>
+              <option value="flujo_centrado">Flujo Centrado</option>
+              <option value="hipervigilancia_productiva">Hipervigilancia Productiva</option>
+              <option value="congelamiento_analitico">Congelamiento Analítico</option>
+              <option value="sobrecompensacion_heroica">Sobrecompensación Heroica</option>
+              <option value="observador_neutro">Observador Neutro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Estado Sistémico</label>
+            <select name="estado_sistemico" id="input-sistemico">
+              <option value="EQUILIBRIO">EQUILIBRIO</option>
+              <option value="DEFICIENCIA">DEFICIENCIA</option>
+              <option value="TRANSICION">TRANSICIÓN</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group full">
+          <label>Observación / Bitácora consciente</label>
+          <textarea name="observacion" id="input-observacion" rows="2" placeholder="Sentido del movimiento, huella, valor..."></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-primary">REGISTRAR TAREA</button>
+          <button type="reset" class="btn-secondary">LIMPIAR</button>
+        </div>
+      </form>
+      <div class="form-status" id="form-status"></div>
+    </section>
+
+    <!-- LISTA DE TAREAS -->
+    <section class="lista-section">
+      <h2><span class="icon">📋</span> TAREAS REGISTRADAS</h2>
+      
+      <div class="filtros-bar">
+        <button class="filtro-btn active" data-filtro="TODAS">TODAS ({tareas.length})</button>
+        <button class="filtro-btn" data-filtro="PENDIENTE">PENDIENTES ({conteoPorEstado.PENDIENTE})</button>
+        <button class="filtro-btn" data-filtro="EN_PROCESO">EN PROCESO ({conteoPorEstado.EN_PROCESO})</button>
+        <button class="filtro-btn" data-filtro="FINALIZADO">FINALIZADOS ({conteoPorEstado.FINALIZADO})</button>
+      </div>
+
+      <div class="tareas-list" id="tareas-list">
+        {tareas.length === 0 ? (
+          <p class="empty-msg">> No hay tareas registradas. Usa el formulario de arriba.</p>
+        ) : (
+          tareas.map((tarea: any) => (
+            <div class={`tarea-item tarea-${String(tarea.estado).toLowerCase().replace(/ /g, '-')}`} data-id={tarea.id} data-estado={tarea.estado}>
+              <div class="tarea-top">
+                <div class="tarea-id">{tarea.id}</div>
+                <div class="tarea-nodo">{String(tarea.nodo || '').toUpperCase()}</div>
+                <div class={`tarea-estado-badge estado-${String(tarea.estado).toLowerCase().replace(/ /g, '-')}`}>{tarea.estado}</div>
+                <div class={`tarea-prioridad prioridad-${String(tarea.prioridad).toLowerCase()}`}>{tarea.prioridad}</div>
+              </div>
+              
+              <div class="tarea-body">
+                <div class="tarea-proyecto">{tarea.proyecto}</div>
+                <h3 class="tarea-titulo">{tarea.titulo}</h3>
+                {tarea.descripcion && <p class="tarea-desc">{tarea.descripcion}</p>}
+                
+                {tarea.que_falta && (
+                  <div class="tarea-falta">
+                    <span class="falta-label">⚠ QUÉ FALTA:</span>
+                    <span class="falta-text">{tarea.que_falta}</span>
+                  </div>
+                )}
+              </div>
+
+              <div class="tarea-meta">
+                <div class="meta-col">
+                  <span class="meta-label">Identificado:</span>
+                  <span class="meta-value">{tarea.fecha_identificacion || '-'}</span>
+                </div>
+                <div class="meta-col">
+                  <span class="meta-label">Finalizado:</span>
+                  <span class="meta-value">{tarea.fecha_finalizacion || '-'}</span>
+                </div>
+                <div class="meta-col">
+                  <span class="meta-label">Tiempo:</span>
+                  <span class="meta-value tiempo">{tarea.tiempo_total || 'En curso'}</span>
+                </div>
+                <div class="meta-col">
+                  <span class="meta-label">Energía:</span>
+                  <span class="meta-value">{tarea.energia_costo || '-'}/{tarea.energia_valor || '-'}</span>
+                </div>
+              </div>
+
+              {tarea.biotipo && (
+                <div class="tarea-bio">
+                  <span class="bio-label">Biotipo:</span>
+                  <span class="bio-value">{tarea.biotipo}</span>
+                  <span class="bio-label">Sistémico:</span>
+                  <span class={`bio-value bio-${String(tarea.estado_sistemico).toLowerCase()}`}>{tarea.estado_sistemico}</span>
+                </div>
+              )}
+
+              {tarea.observacion && <p class="tarea-obs">"{tarea.observacion}"</p>}
+
+              <div class="tarea-actions">
+                {tarea.estado !== 'FINALIZADO' && (
+                  <button class="btn-action btn-finalizar" data-id={tarea.id}>FINALIZAR</button>
+                )}
+                {tarea.estado === 'PENDIENTE' && (
+                  <button class="btn-action btn-iniciar" data-id={tarea.id}>INICIAR</button>
+                )}
+                <button class="btn-action btn-eliminar" data-id={tarea.id}>ELIMINAR</button>
+              </div>
+            </div>
+          ))
+        )}
+      </div>
+    </section>
+
+    <!-- ACCESO A VISTA POR NODO -->
+    <section class="nodos-access">
+      <h2><span class="icon">🏛️</span> VER TAREAS POR TALLER / NODO</h2>
+      <div class="nodos-grid">
+        {nodos.map(n => {
+          const count = tareas.filter(t => String(t.nodo).toLowerCase() === n.id.toLowerCase()).length;
+          return (
+            <a href={`/tareas-nodo?nodo=${n.id}`} class="nodo-card">
+              <div class="nodo-nombre">{n.nombre}</div>
+              <div class="nodo-count">{count} tareas</div>
+            </a>
+          );
+        })}
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  :root { --color-black: #000000; --color-white: #ffffff; --color-pink: #ff3e96; --color-green: #00ff00; --color-red: #ff3333; --color-yellow: #ffaa00; --color-dim: #888888; --border-alpha: rgba(255, 255, 255, 0.15); --font-mono: 'Courier New', Courier, monospace; --font-sans: 'Impact', 'Arial Black', sans-serif; }
+  
+  .tareas-main { max-width: 1400px; margin: 0 auto; padding: 40px 20px; font-family: var(--font-mono); color: var(--color-white); }
+  .tareas-header { text-align: center; margin-bottom: 40px; border-bottom: 1px solid var(--border-alpha); padding-bottom: 20px; }
+  .tareas-header h1 { font-family: var(--font-sans); font-size: 2.2rem; color: var(--color-pink); letter-spacing: 2px; margin-bottom: 10px; }
+  .subtitle { color: var(--color-dim); font-size: 0.9rem; }
+  
+  section { margin-bottom: 40px; }
+  section h2 { font-size: 1.2rem; color: var(--color-pink); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; letter-spacing: 1px; }
+  .icon { font-size: 1.4rem; }
+  
+  /* STATS */
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 30px; }
+  .stat-card { border: 1px solid var(--border-alpha); padding: 20px; text-align: center; background: rgba(255, 255, 255, 0.02); }
+  .stat-num { font-family: var(--font-sans); font-size: 2.5rem; margin-bottom: 5px; }
+  .stat-label { font-size: 0.75rem; letter-spacing: 2px; color: var(--color-dim); }
+  .stat-pendiente .stat-num { color: var(--color-yellow); }
+  .stat-proceso .stat-num { color: #00aaff; }
+  .stat-finalizado .stat-num { color: var(--color-green); }
+  .stat-total .stat-num { color: var(--color-pink); }
+  
+  /* FORM */
+  .form-section { border: 1px solid var(--border-alpha); padding: 25px; background: rgba(255, 255, 255, 0.02); }
+  .tarea-form { display: flex; flex-direction: column; gap: 15px; }
+  .form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+  .form-group { display: flex; flex-direction: column; gap: 5px; }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-group label { font-size: 0.75rem; color: var(--color-dim); letter-spacing: 1px; text-transform: uppercase; }
+  .form-group input, .form-group select, .form-group textarea { background: rgba(0, 0, 0, 0.5); border: 1px solid var(--border-alpha); color: var(--color-white); padding: 10px; font-family: var(--font-mono); font-size: 0.9rem; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--color-pink); }
+  .form-actions { display: flex; gap: 15px; margin-top: 10px; }
+  .btn-primary { background: var(--color-pink); border: 2px solid var(--color-pink); color: var(--color-black); padding: 12px 30px; font-family: var(--font-mono); font-weight: bold; cursor: pointer; letter-spacing: 1px; transition: all 0.2s; }
+  .btn-primary:hover { background: transparent; color: var(--color-pink); }
+  .btn-secondary { background: transparent; border: 1px solid var(--border-alpha); color: var(--color-white); padding: 12px 30px; font-family: var(--font-mono); cursor: pointer; letter-spacing: 1px; }
+  .btn-secondary:hover { border-color: var(--color-pink); color: var(--color-pink); }
+  .form-status { margin-top: 15px; padding: 10px; font-size: 0.85rem; min-height: 20px; }
+  .form-status.success { color: var(--color-green); border: 1px solid var(--color-green); }
+  .form-status.error { color: var(--color-red); border: 1px solid var(--color-red); }
+  
+  /* FILTROS */
+  .filtros-bar { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+  .filtro-btn { background: transparent; border: 1px solid var(--border-alpha); color: var(--color-dim); padding: 8px 16px; font-family: var(--font-mono); font-size: 0.8rem; cursor: pointer; letter-spacing: 1px; }
+  .filtro-btn:hover, .filtro-btn.active { border-color: var(--color-pink); color: var(--color-pink); }
+  
+  /* LISTA TAREAS */
+  .tareas-list { display: flex; flex-direction: column; gap: 15px; }
+  .tarea-item { border: 1px solid var(--border-alpha); padding: 20px; background: rgba(255, 255, 255, 0.02); transition: all 0.2s; }
+  .tarea-item:hover { border-color: var(--color-pink); }
+  .tarea-item.tarea-pendiente { border-left: 4px solid var(--color-yellow); }
+  .tarea-item.tarea-en_proceso { border-left: 4px solid #00aaff; }
+  .tarea-item.tarea-finalizado { border-left: 4px solid var(--color-green); opacity: 0.85; }
+  
+  .tarea-top { display: flex; gap: 10px; align-items: center; margin-bottom: 10px; flex-wrap: wrap; }
+  .tarea-id { font-size: 0.75rem; color: var(--color-dim); }
+  .tarea-nodo { font-size: 0.75rem; color: var(--color-pink); font-weight: bold; }
+  .tarea-estado-badge { font-size: 0.7rem; padding: 2px 8px; border: 1px solid currentColor; }
+  .estado-pendiente { color: var(--color-yellow); }
+  .estado-en_proceso { color: #00aaff; }
+  .estado-finalizado { color: var(--color-green); }
+  .tarea-prioridad { font-size: 0.7rem; font-weight: bold; margin-left: auto; }
+  .prioridad-baja { color: var(--color-dim); }
+  .prioridad-media { color: var(--color-white); }
+  .prioridad-alta { color: var(--color-yellow); }
+  .prioridad-critica { color: var(--color-red); }
+  
+  .tarea-body { margin-bottom: 15px; }
+  .tarea-proyecto { font-size: 0.75rem; color: var(--color-dim); letter-spacing: 1px; margin-bottom: 5px; }
+  .tarea-titulo { font-size: 1.1rem; margin-bottom: 8px; color: var(--color-white); }
+  .tarea-desc { font-size: 0.85rem; color: var(--color-dim); line-height: 1.5; margin-bottom: 10px; }
+  .tarea-falta { background: rgba(255, 170, 0, 0.1); border-left: 3px solid var(--color-yellow); padding: 10px; font-size: 0.85rem; }
+  .falta-label { color: var(--color-yellow); font-weight: bold; margin-right: 8px; }
+  .falta-text { color: var(--color-white); }
+  
+  .tarea-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; padding: 10px 0; border-top: 1px solid var(--border-alpha); border-bottom: 1px solid var(--border-alpha); margin-bottom: 10px; }
+  .meta-col { display: flex; flex-direction: column; gap: 3px; }
+  .meta-label { font-size: 0.7rem; color: var(--color-dim); }
+  .meta-value { font-size: 0.85rem; color: var(--color-white); }
+  .meta-value.tiempo { color: var(--color-green); font-weight: bold; }
+  
+  .tarea-bio { display: flex; gap: 15px; flex-wrap: wrap; font-size: 0.8rem; margin-bottom: 10px; }
+  .bio-label { color: var(--color-dim); }
+  .bio-value { color: var(--color-white); }
+  .bio-equilibrio { color: var(--color-green); font-weight: bold; }
+  .bio-deficiencia { color: var(--color-red); font-weight: bold; }
+  .bio-transicion { color: var(--color-yellow); font-weight: bold; }
+  
+  .tarea-obs { font-style: italic; color: var(--color-dim); font-size: 0.85rem; margin-bottom: 10px; padding-left: 10px; border-left: 2px solid var(--color-pink); }
+  
+  .tarea-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn-action { background: transparent; border: 1px solid var(--border-alpha); color: var(--color-white); padding: 6px 14px; font-family: var(--font-mono); font-size: 0.75rem; cursor: pointer; letter-spacing: 1px; }
+  .btn-action:hover { border-color: var(--color-pink); color: var(--color-pink); }
+  .btn-finalizar:hover { border-color: var(--color-green); color: var(--color-green); }
+  .btn-iniciar:hover { border-color: #00aaff; color: #00aaff; }
+  .btn-eliminar:hover { border-color: var(--color-red); color: var(--color-red); }
+  
+  .empty-msg { color: var(--color-dim); font-size: 0.9rem; padding: 20px; text-align: center; }
+  
+  /* NODOS ACCESS */
+  .nodos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
+  .nodo-card { border: 1px solid var(--border-alpha); padding: 20px; text-decoration: none; color: var(--color-white); text-align: center; transition: all 0.2s; background: rgba(255, 255, 255, 0.02); }
+  .nodo-card:hover { border-color: var(--color-pink); background: rgba(255, 62, 150, 0.1); transform: translateY(-3px); }
+  .nodo-nombre { font-family: var(--font-sans); font-size: 1rem; letter-spacing: 1px; margin-bottom: 8px; }
+  .nodo-count { font-size: 0.8rem; color: var(--color-green); }
+  
+  @media (max-width: 768px) {
+    .tareas-header h1 { font-size: 1.5rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .tarea-meta { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('form-tarea');
+    const formStatus = document.getElementById('form-status');
+    const tareasList = document.getElementById('tareas-list');
+    const filtrosBtns = document.querySelectorAll('.filtro-btn');
+
+    // Enviar formulario
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+      data.action = 'crear';
+      data.energia_costo = parseInt(data.energia_costo) || 0;
+      data.energia_valor = parseInt(data.energia_valor) || 0;
+
+      try {
+        const res = await fetch('/api/tareas', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const result = await res.json();
+        
+        if (result.success) {
+          formStatus.textContent = `✅ Tarea registrada: ${data.titulo}`;
+          formStatus.className = 'form-status success';
+          form.reset();
+          setTimeout(() => location.reload(), 1500);
+        } else {
+          formStatus.textContent = `❌ Error: ${result.message}`;
+          formStatus.className = 'form-status error';
+        }
+      } catch (err) {
+        formStatus.textContent = `❌ Error de conexión: ${err.message}`;
+        formStatus.className = 'form-status error';
+      }
+    });
+
+    // Filtros
+    filtrosBtns.forEach(btn => {
+      btn?.addEventListener('click', () => {
+        filtrosBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filtro = btn.dataset.filtro;
+        const items = tareasList?.querySelectorAll('.tarea-item');
+        items?.forEach(item => {
+          if (filtro === 'TODAS' || item.dataset.estado === filtro) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Botones de acción (finalizar, iniciar, eliminar)
+    document.querySelectorAll('.btn-finalizar').forEach(btn => {
+      btn?.addEventListener('click', async () => {
+        const id = btn.dataset.id;
+        if (!confirm('¿Finalizar esta tarea?')) return;
+        await actualizarTarea(id, { estado: 'FINALIZADO' });
+      });
+    });
+
+    document.querySelectorAll('.btn-iniciar').forEach(btn => {
+      btn?.addEventListener('click', async () => {
+        const id = btn.dataset.id;
+        await actualizarTarea(id, { estado: 'EN_PROCESO' });
+      });
+    });
+
+    document.querySelectorAll('.btn-eliminar').forEach(btn => {
+      btn?.addEventListener('click', async () => {
+        const id = btn.dataset.id;
+        if (!confirm('¿Eliminar esta tarea?')) return;
+        await fetch('/api/tareas', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'eliminar', id })
+        });
+        location.reload();
+      });
+    });
+
+    async function actualizarTarea(id: string, updates: any) {
+      try {
+        const res = await fetch('/api/tareas', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'actualizar', id, ...updates })
+        });
+        const result = await res.json();
+        if (result.success) location.reload();
+      } catch (err) {
+        alert('Error: ' + err.message);
+      }
+    }
+  });
+</script>
