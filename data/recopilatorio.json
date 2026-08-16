@@ -1,0 +1,196 @@
+{
+    "registros": [
+        {
+            "id": "REC-40CC0A",
+            "fecha": "2026-08-16",
+            "taller": "Quantum Lab",
+            "roles": [
+                "presidente",
+                "director",
+                "arquitecto",
+                "ingeniero",
+                "programador",
+                "disenador",
+                "ejecutor_tecnico",
+                "CEO",
+                "filosofo",
+                "mago",
+                "oficiante_creativo"
+            ],
+            "etapa": "proyecto_actual",
+            "foco": {
+                "backend": 2.5,
+                "frontend": 1.5,
+                "datos": 1.5,
+                "contenido": 1,
+                "direccion": 0.5
+            },
+            "avances": [
+                "[backend] panel-general.php (reloj + KPIs + gráficos) — programador, ingeniero, ejecutor_tecnico",
+                "[backend] APIs guardar-reloj \/ listar-reloj — programador, ingeniero",
+                "[datos] reloj-consciente.json + tareas.json — ingeniero, arquitecto",
+                "[datos] Recopilatorio + export Excel (CSV) — ingeniero, arquitecto",
+                "[frontend] gráficos de área + valor integral sin recuadros — diseñador, oficiante_creativo",
+                "[frontend] viñetas Hub \/ Recopilatorio \/ Configuración — diseñador",
+                "[contenido] memoria CONTEXTO \/ MANIFIESTO \/ ESTRUCTURA — filósofo, mago, oficiante_creativo",
+                "[direccion] valor hora integral + leyenda de clasificación — director, presidente, CEO, arquitecto"
+            ],
+            "tareas_cubiertas": [
+                "Panel-General",
+                "APIs reloj",
+                "Recopilatorio",
+                "Valor integral",
+                "Memoria",
+                "Leyenda de clasificación"
+            ],
+            "tareas_pendientes": [
+                "Probar reloj end-to-end",
+                "Validar gráficos con datos reales",
+                "Ingresar 1ª síntesis",
+                "Despliegue GitHub+Vercel",
+                "Landing del fundador"
+            ],
+            "horas": 0,
+            "valor_hora_constante": 9600,
+            "valor_total": 0,
+            "clasificado_por": "IA",
+            "ingresado_por": "Presidente"
+        },
+        {
+            "id": "REC-40BA29",
+            "fecha": "2026-08-16",
+            "taller": "Quantum Lab",
+            "roles": [
+                "presidente",
+                "director",
+                "arquitecto",
+                "ingeniero",
+                "programador",
+                "disenador",
+                "ejecutor_tecnico",
+                "CEO",
+                "oficiante_creativo"
+            ],
+            "etapa": "proyecto_actual",
+            "foco": {
+                "backend": 2.5,
+                "frontend": 1,
+                "datos": 1.5,
+                "direccion": 0.5
+            },
+            "avances": [
+                "[backend] Panel-General operativo (reloj consciente + KPIs + gráficos de área + tareas + bitácoras) — programador, ingeniero, ejecutor_tecnico",
+                "[backend] APIs del reloj: guardar-reloj.php y listar-reloj.php funcionales — programador, ingeniero",
+                "[datos] Inventario v5.1: sistema de salud ✅\/🧪\/❌ + agente de diagnóstico + informe descargable — ingeniero, arquitecto",
+                "[backend] Corrección de rutas admin\/ (eliminación de falsos 404) — ingeniero",
+                "[direccion] Limpieza: configuración (Fondo+Fuentes) y bitácora sin duplicados — director, presidente, CEO",
+                "[contenido] 24 tareas pendientes cargadas en tareas.json con clasificación por área — director, arquitecto",
+                "[backend] Guards en panel-nodo-template.php + parches settings.json (17 claves) — programador, ingeniero",
+                "[datos] Recopilatorio creado como base de datos rastreable con export Excel — arquitecto, ingeniero"
+            ],
+            "tareas_cubiertas": [
+                "Panel-General completo",
+                "APIs del reloj",
+                "Inventario v5 + agente",
+                "Corrección rutas",
+                "Limpieza config\/bitácora",
+                "Carga tareas",
+                "Parches settings",
+                "Recopilatorio"
+            ],
+            "tareas_pendientes": [
+                "Despliegue GitHub+Vercel",
+                "Landing del fundador bilingüe",
+                "Dossier institucional",
+                "Modo Cine Web",
+                "Knowledge Base + RAG local",
+                "Plan de 90 días"
+            ],
+            "horas": 0,
+            "valor_hora_constante": 70000,
+            "valor_total": 0,
+            "clasificado_por": "IA",
+            "ingresado_por": "Presidente"
+        },
+        {
+            "id": "REC-BD4E34",
+            "fecha": "2026-08-16",
+            "taller": "Quantum Lab",
+            "roles": [
+                "presidente",
+                "director",
+                "arquitecto",
+                "ingeniero",
+                "programador",
+                "disenador",
+                "ejecutor_tecnico",
+                "CEO",
+                "filosofo",
+                "mago",
+                "oficiante_creativo"
+            ],
+            "etapa": "proyecto_actual",
+            "foco": {
+                "backend": 2.5,
+                "frontend": 1,
+                "datos": 1.5,
+                "direccion": 0.5
+            },
+            "avances": [
+                "[backend] Panel-General operativo (reloj + KPIs + gráficos + tareas + bitácoras + RESET) — programador, ingeniero, ejecutor_tecnico",
+                "[backend] APIs del reloj funcionales (guardar-reloj, listar-reloj) — programador, ingeniero",
+                "[datos] Inventario v5.1: salud ✅\/🧪\/ + agente + informe + 👁️ Abrir — ingeniero, arquitecto",
+                "[backend] Corrección rutas admin\/ (falsos 404 eliminados) — ingeniero",
+                "[backend] Parches settings.json (17 claves X\/Y) + guards panel-nodo-template — programador, ingeniero",
+                "[direccion] Limpieza: configuración (Fondo+Fuentes) y bitácora sin duplicados — director, presidente, CEO",
+                "[contenido] 24 tareas cargadas en tareas.json + T-025\/T-026 anotadas — director, arquitecto",
+                "[datos] Recopilatorio como base rastreable con export Excel — arquitecto, ingeniero"
+            ],
+            "tareas_cubiertas": [
+                "Panel-General + RESET",
+                "APIs reloj",
+                "Inventario v5.1",
+                "Rutas admin\/",
+                "Parches settings",
+                "Guards plantilla",
+                "Limpieza config\/bitácora",
+                "Carga de tareas"
+            ],
+            "tareas_pendientes": [
+                "[datos] CIERRE HOY: pulsar 🔄 RESET (archivar pruebas del reloj)",
+                "[datos] CIERRE HOY: guardar MEMORIA.md en la raíz",
+                "[datos] Limpiar falso positivo autoreferencial del inventario",
+                "[datos] Refrescar salud-cache con nuevo chequeo",
+                "[datos] T-025: MEMORIA.md + método de recopilación de línea de tiempo",
+                "[backend] T-026: agente Línea de Tiempo (Git + filemtime + reloj + bitácoras)",
+                "[infraestructura] Despliegue GitHub + Vercel",
+                "[infraestructura] Configurar dominio propio",
+                "[backend] Unificar Recopilatorio (auto-leer horas y tareas)",
+                "[backend] Migrar datos a MySQL (opcional, decisión pendiente)",
+                "[backend] Knowledge Base + RAG local",
+                "[backend] API de trazabilidad \/ grafo",
+                "[frontend] Landing del fundador bilingüe",
+                "[frontend] Dossier institucional bilingüe",
+                "[frontend] Modo Cine Web",
+                "[frontend] Páginas externas por nodo (Partner Nodes)",
+                "[frontend] Identidad visual del Panel-General",
+                "[frontend] Guía visual de referencia",
+                "[contenido] Manifiesto ES\/EN",
+                "[contenido] One-pager comercial universidades",
+                "[contenido] Pitch 30s \/ 3min \/ 10min",
+                "[contenido] Documentar roles y leyenda de clasificación",
+                "[contenido] Opus Magnum: guion del viaje sonoro",
+                "[alianzas] Mapear 20 instituciones objetivo",
+                "[alianzas] Primera conversación institucional",
+                "[alianzas] Carta de Alianza Institucional",
+                "[general] Plan de 90 días de ejecución",
+                "[general] Presupuesto y financiamiento"
+            ],
+            "horas": 0,
+            "valor_hora_constante": 70000,
+            "valor_total": 0,
+            "clasificado_por": "IA",
+            "ingresado_por": "Presidente"
+        }
+    ]
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía Visual - The Difference</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0f0f0f; color: #fff; font-family: system-ui, sans-serif; padding: 2rem; }
+    .header { text-align: center; margin-bottom: 3rem; border-bottom: 1px solid #333; padding-bottom: 1rem; }
+    .header h1 { color: #ff69b4; font-size: 2.5rem; letter-spacing: 5px; text-transform: uppercase; }
+    .header p { color: #a0a0a0; margin-top: 0.5rem; letter-spacing: 2px; }
+    
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+    .card { background: #1a1a1a; border: 1px solid #333; border-radius: 8px; overflow: hidden; transition: transform 0.2s; }
+    .card:hover { transform: translateY(-5px); border-color: #ff69b4; }
+    .card-img { width: 100%; height: 250px; object-fit: cover; background: #000; display: flex; align-items: center; justify-content: center; color: #555; }
+    .card-img img { width: 100%; height: 100%; object-fit: cover; }
+    .card-body { padding: 1.5rem; }
+    .card-title { color: #fffc34; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
+    .card-text { color: #a0a0a0; font-size: 0.9rem; line-height: 1.5; }
+    
+    .colors { display: flex; gap: 1rem; margin-top: 1rem; }
+    .color-box { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #fff; }
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1>The Difference</h1>
+    <p>Memoria Visual y Guía de Estética</p>
+</div>
+
+<div class="grid">
+    <!-- Tarjeta 1: Portada -->
+    <div class="card">
+        <div class="card-img">
+            <!-- Cambia 'referencias/portada.jpg' por tu imagen real -->
+            <img src="referencias/portada.jpg" alt="Portada Esperada" onerror="this.style.display='none'; this.parentElement.innerText='Arrastra portada.jpg aquí'">
+        </div>
+        <div class="card-body">
+            <div class="card-title">Portada Principal</div>
+            <div class="card-text">Minimalismo oscuro. Título grande centrado, logo circular con glow rosa, botón principal blanco y botón secundario amarillo.</div>
+        </div>
+    </div>
+
+    <!-- Tarjeta 2: Tipografía -->
+    <div class="card">
+        <div class="card-img" style="flex-direction: column; font-family: 'Arial Black', sans-serif;">
+            <div style="font-size: 2rem; color: #fff; letter-spacing: 5px;">FEELING AUTISTIC</div>
+            <div style="font-size: 0.8rem; color: #a0a0a0; letter-spacing: 2px; margin-top: 10px;">INTUITIVE ANALYTIC PLATFORM</div>
+        </div>
+        <div class="card-body">
+            <div class="card-title">Tipografía</div>
+            <div class="card-text">Arial Black (900) para títulos. Uppercase. Letter-spacing amplio (5px). Color blanco puro sobre negro.</div>
+        </div>
+    </div>
+
+    <!-- Tarjeta 3: Paleta -->
+    <div class="card">
+        <div class="card-img">
+            <div class="colors">
+                <div class="color-box" style="background: #000000;" title="Fondo"></div>
+                <div class="color-box" style="background: #ffffff;" title="Texto"></div>
+                <div class="color-box" style="background: #ff69b4;" title="Rosa Glow"></div>
+                <div class="color-box" style="background: #fffc34;" title="Amarillo"></div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card-title">Paleta de Colores</div>
+            <div class="card-text">Negro (#000), Blanco (#fff), Rosa Neon (#ff69b4) para acentos/hover, Amarillo (#fffc34) para secundarios.</div>
+        </div>
+    </div>
+
+    <!-- Tarjeta 4: Fondo Video/Imagen -->
+    <div class="card">
+        <div class="card-img">
+            <img src="referencias/fondo.jpg" alt="Fondo Multimedia" onerror="this.style.display='none'; this.parentElement.innerText='Arrastra fondo.jpg aquí'">
+        </div>
+        <div class="card-body">
+            <div class="card-title">Fondo Multimedia</div>
+            <div class="card-text">Video o imagen a pantalla completa (100vw/100vh). Overlay negro al 30% de opacidad para garantizar legibilidad.</div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

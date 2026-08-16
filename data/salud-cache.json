@@ -1,0 +1,562 @@
+{
+    "ars-tekne.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "config.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "conversaciones.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "functions.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "guardar_entrada.php": {
+        "funciona": true,
+        "detalle": "HTTP 302",
+        "fecha": "2026-08-16 21:46"
+    },
+    "le-tematik.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "log.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "menu.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "nodo.php": {
+        "funciona": true,
+        "detalle": "HTTP 302",
+        "fecha": "2026-08-16 21:46"
+    },
+    "panel-general.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "pensamiento-autista.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "portada.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "project-nada-brahma.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "quantumlab.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "quiron-theatre.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "saiayin-do.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "texvn.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "the-difference.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "bitacora.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "config-nodo.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "configuracion.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "configurar-cuentas.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "consejo-sabios.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "cuadernos.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "dashboard.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "export.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "hub-central.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "inventario.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "log-personal.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "multi-cuentas.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "paginas.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "panel-agentes-ia.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "panel-ars-tekne.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "panel-conceptos.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "panel-estadisticas.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "panel-evolucion.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "panel-grafo.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "panel-le-tematik.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "panel-log.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "panel-menu.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "panel-nodo-template.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "panel-nodos.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "panel-pensamiento-autista.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "panel-portada.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "panel-project-nada-brahma.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "panel-quantumlab.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "panel-quiron-theatre.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "panel-saiayin-do.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "panel-texvn.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "plantillas.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "recopilatorio.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "registro-bitacora.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "save-position.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "admin\/api\/listar-reloj.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "exportar-excel.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "get-config.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "guardar-log-con-ia.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "guardar-log-personal.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "guardar-reloj.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "guardianes.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "trazabilidad.php": {
+        "funciona": false,
+        "detalle": "HTTP 404",
+        "fecha": "2026-08-16 09:26"
+    },
+    "admin\/api\/agentes\/agente-multi-ia.php": {
+        "funciona": false,
+        "detalle": "HTTP 400",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/api\/agentes\/clasificador.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/api\/agentes\/diagnostico-relaciones.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/api\/agentes\/diagnostico.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/api\/agentes\/evolucion.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/api\/agentes\/normalizador.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/api\/agentes\/relacionador.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/api\/agentes\/sincronizador.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/bitacora.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/config-nodo.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/configuracion.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/configurar-cuentas.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/consejo-sabios.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/cuadernos.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/dashboard.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/export.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/hub-central.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/log-personal.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/multi-cuentas.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/paginas.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/panel-agentes-ia.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/panel-ars-tekne.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/panel-conceptos.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/panel-estadisticas.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/panel-evolucion.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/panel-grafo.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/panel-le-tematik.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/panel-log.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/panel-menu.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/panel-nodo-template.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/panel-nodos.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/panel-pensamiento-autista.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/panel-portada.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/panel-project-nada-brahma.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/panel-quantumlab.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/panel-quiron-theatre.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/panel-saiayin-do.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/panel-texvn.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/plantillas.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/recopilatorio.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/registro-bitacora.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/save-position.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/api\/exportar-excel.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/api\/get-config.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/api\/guardar-log-con-ia.php": {
+        "funciona": false,
+        "detalle": "HTTP 400",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/api\/guardar-log-personal.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/api\/guardar-reloj.php": {
+        "funciona": false,
+        "detalle": "HTTP 405",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/api\/guardianes.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/api\/trazabilidad.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    },
+    "admin\/patch-settings.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 10:19"
+    },
+    "admin\/inventario.php": {
+        "funciona": true,
+        "detalle": "HTTP 200",
+        "fecha": "2026-08-16 21:46"
+    }
+}

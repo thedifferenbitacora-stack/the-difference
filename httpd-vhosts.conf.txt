@@ -1,0 +1,18 @@
+# Virtual Hosts Configuration for AMPPS
+# DO NOT REMOVE THIS COMMENT
+
+<VirtualHost *:80>
+    ServerAdmin admin@the-difference.local
+    DocumentRoot "C:/PROYECTO/THE DIFFERENCE/the-difference-php"
+    ServerName the-difference.local
+    ServerAlias www.the-difference.local
+    
+    <Directory "C:/PROYECTO/THE DIFFERENCE/the-difference-php">
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+    
+    ErrorLog "logs/the-difference-error.log"
+    CustomLog "logs/the-difference-access.log" common
+</VirtualHost>

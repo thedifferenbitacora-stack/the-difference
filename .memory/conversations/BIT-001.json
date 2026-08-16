@@ -1,0 +1,49 @@
+{
+    "id": "BIT-001",
+    "titulo": "El origen del Ojo que se abre",
+    "fecha_original": "2026-08-10 10:00:00",
+    "tipo_pensamiento_original": "observacion",
+    "analisis": {
+        "idioma_detectado": "es",
+        "conceptos": [
+            "sistema",
+            "presencia",
+            "tiempo",
+            "umbral",
+            "origen",
+            "abre",
+            "comenzamos"
+        ],
+        "palabras_clave": [
+            "origen",
+            "abre",
+            "comenzamos",
+            "diseñar",
+            "portada",
+            "imagen",
+            "umbral"
+        ],
+        "terminos_dominio": [
+            "sistema",
+            "presencia",
+            "tiempo",
+            "umbral"
+        ],
+        "resumen": "El origen del Ojo que se abre\n\nHoy comenzamos a diseñar la portada con el ojo.",
+        "total_palabras": 49,
+        "total_filtradas": 28
+    },
+    "metadata": {
+        "proceso": "portada",
+        "categoria": "proyecto",
+        "sujeto": "fundador",
+        "idioma": "es"
+    },
+    "relaciones": [
+        "BIT-004",
+        "BIT-007"
+    ],
+    "fecha_procesamiento": "2026-08-16 21:46:44",
+    "version_agente": "3.0.1-multilingual-fix",
+    "fuente": "bitacora"
+}

@@ -1,0 +1,15 @@
+{
+    "id": 1,
+    "name": "Pagina Principal",
+    "slug": "principal",
+    "description": "Layout principal",
+    "structure": {
+        "nav": true,
+        "footer": true,
+        "header": true,
+        "content": true
+    },
+    "styles": null,
+    "active": true,
+    "created_at": "2026-07-20 21:24:51"
+}

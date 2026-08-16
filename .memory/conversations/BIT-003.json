@@ -1,0 +1,52 @@
+{
+    "id": "BIT-003",
+    "titulo": "Nada Brahma: El desarrollo técnico con alma",
+    "fecha_original": "2026-08-12 09:15:00",
+    "tipo_pensamiento_original": "pensamiento_critico",
+    "analisis": {
+        "idioma_detectado": "es",
+        "conceptos": [
+            "trazabilidad",
+            "desarrollo",
+            "centro",
+            "tiempo",
+            "salud",
+            "técnico",
+            "debe"
+        ],
+        "palabras_clave": [
+            "desarrollo",
+            "técnico",
+            "debe",
+            "optimizamos",
+            "nada",
+            "brahma",
+            "alma"
+        ],
+        "terminos_dominio": [
+            "trazabilidad",
+            "desarrollo",
+            "centro",
+            "tiempo",
+            "salud",
+            "dato"
+        ],
+        "resumen": "Nada Brahma: El desarrollo técnico con alma\n\nEl centro de desarrollo técnico no puede ser solo código.",
+        "total_palabras": 47,
+        "total_filtradas": 22
+    },
+    "metadata": {
+        "proceso": "nada-brahma",
+        "categoria": "proyecto",
+        "sujeto": "fundador",
+        "idioma": "es"
+    },
+    "relaciones": [
+        "BIT-002",
+        "BIT-004",
+        "BIT-007"
+    ],
+    "fecha_procesamiento": "2026-08-16 21:46:44",
+    "version_agente": "3.0.1-multilingual-fix",
+    "fuente": "bitacora"
+}

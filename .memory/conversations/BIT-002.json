@@ -1,0 +1,48 @@
+{
+    "id": "BIT-002",
+    "titulo": "TEXVN: La bitácora como huella",
+    "fecha_original": "2026-08-11 14:30:00",
+    "tipo_pensamiento_original": "reflexion",
+    "analisis": {
+        "idioma_detectado": "es",
+        "conceptos": [
+            "huella",
+            "pensamiento",
+            "texvn",
+            "bitácora",
+            "formulario",
+            "registro"
+        ],
+        "palabras_clave": [
+            "texvn",
+            "huella",
+            "bitácora",
+            "formulario",
+            "registro",
+            "entrada",
+            "debe"
+        ],
+        "terminos_dominio": [
+            "huella",
+            "pensamiento"
+        ],
+        "resumen": "TEXVN: La bitácora como huella\n\nTEXVN no es un formulario.",
+        "total_palabras": 47,
+        "total_filtradas": 22
+    },
+    "metadata": {
+        "proceso": "texvn",
+        "categoria": "proyecto",
+        "sujeto": "fundador",
+        "idioma": "es"
+    },
+    "relaciones": [
+        "BIT-001",
+        "BIT-004",
+        "BIT-007",
+        "BIT-003"
+    ],
+    "fecha_procesamiento": "2026-08-16 21:46:44",
+    "version_agente": "3.0.1-multilingual-fix",
+    "fuente": "bitacora"
+}

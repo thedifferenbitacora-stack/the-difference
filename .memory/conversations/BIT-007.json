@@ -1,0 +1,49 @@
+{
+    "id": "BIT-007",
+    "titulo": "API de Trazabilidad: El corazón del sistema",
+    "fecha_original": "2026-08-14 01:17:36",
+    "tipo_pensamiento_original": "sintesis",
+    "analisis": {
+        "idioma_detectado": "es",
+        "conceptos": [
+            "sistema",
+            "trazabilidad",
+            "espejo",
+            "corazón",
+            "creamos",
+            "endpoint"
+        ],
+        "palabras_clave": [
+            "trazabilidad",
+            "sistema",
+            "corazón",
+            "creamos",
+            "endpoint",
+            "maestro",
+            "conecta"
+        ],
+        "terminos_dominio": [
+            "sistema",
+            "trazabilidad",
+            "espejo"
+        ],
+        "resumen": "API de Trazabilidad: El corazón del sistema\n\nHoy creamos trazabilidad.",
+        "total_palabras": 50,
+        "total_filtradas": 28
+    },
+    "metadata": {
+        "proceso": "nada-brahma",
+        "categoria": "logro",
+        "sujeto": "fundador",
+        "idioma": "es"
+    },
+    "relaciones": [
+        "BIT-003",
+        "BIT-004",
+        "BIT-002",
+        "BIT-001"
+    ],
+    "fecha_procesamiento": "2026-08-16 21:46:44",
+    "version_agente": "3.0.1-multilingual-fix",
+    "fuente": "bitacora"
+}

@@ -1,0 +1,51 @@
+{
+    "id": "BIT-005",
+    "titulo": "Le Tematik: El símbolo hecho contenido",
+    "fecha_original": "2026-08-13 11:00:00",
+    "tipo_pensamiento_original": "observacion",
+    "analisis": {
+        "idioma_detectado": "es",
+        "conceptos": [
+            "proceso",
+            "contenido",
+            "agencia",
+            "productora",
+            "tematik",
+            "símbolo",
+            "hecho"
+        ],
+        "palabras_clave": [
+            "tematik",
+            "símbolo",
+            "hecho",
+            "contenido",
+            "agencia",
+            "productora",
+            "vende"
+        ],
+        "terminos_dominio": [
+            "proceso",
+            "contenido",
+            "agencia",
+            "productora"
+        ],
+        "resumen": "Le Tematik: El símbolo hecho contenido\n\nLa agencia productora no vende servicios.",
+        "total_palabras": 49,
+        "total_filtradas": 21
+    },
+    "metadata": {
+        "proceso": "le-tematik",
+        "categoria": "proyecto",
+        "sujeto": "fundador",
+        "idioma": "es"
+    },
+    "relaciones": [
+        "BIT-001",
+        "BIT-004",
+        "BIT-006",
+        "BIT-007"
+    ],
+    "fecha_procesamiento": "2026-08-16 21:46:44",
+    "version_agente": "3.0.1-multilingual-fix",
+    "fuente": "bitacora"
+}

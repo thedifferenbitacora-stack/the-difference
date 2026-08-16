@@ -1,0 +1,50 @@
+{
+    "id": "BIT-006",
+    "titulo": "Quantum Lab: El útero del individuo",
+    "fecha_original": "2026-08-13 15:30:00",
+    "tipo_pensamiento_original": "intuicion",
+    "analisis": {
+        "idioma_detectado": "es",
+        "conceptos": [
+            "proceso",
+            "huella",
+            "individuo",
+            "valor",
+            "quantum",
+            "útero",
+            "taller"
+        ],
+        "palabras_clave": [
+            "quantum",
+            "individuo",
+            "útero",
+            "taller",
+            "espacio",
+            "reconocido",
+            "valor"
+        ],
+        "terminos_dominio": [
+            "proceso",
+            "huella",
+            "individuo",
+            "valor",
+            "quantum"
+        ],
+        "resumen": "Quantum Lab: El útero del individuo\n\nQuantum Lab no es un taller.",
+        "total_palabras": 52,
+        "total_filtradas": 27
+    },
+    "metadata": {
+        "proceso": "quantumlab",
+        "categoria": "reflexion",
+        "sujeto": "fundador",
+        "idioma": "es"
+    },
+    "relaciones": [
+        "BIT-002",
+        "BIT-005"
+    ],
+    "fecha_procesamiento": "2026-08-16 21:46:44",
+    "version_agente": "3.0.1-multilingual-fix",
+    "fuente": "bitacora"
+}

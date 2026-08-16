@@ -1,0 +1,13 @@
+{
+  "prompts": {
+    "crear-pagina": "Crea una página PHP completa con:\n- Estructura HTML5\n- Conexión a config/settings.json\n- Estilos CSS embebidos\n- Botones con efectos hover\n- Posicionamiento absolute",
+    
+    "arreglar-routing": "Arregla el routing para que:\n- / sea la portada\n- /menu sea el menú\n- Los botones Volver funcionen correctamente",
+    
+    "agregar-funcion": "Agrega esta función a functions.php: {{descripcion}}"
+  },
+  "models": {
+    "default": "qwen2.5-coder:7b",
+    "chat": "qwen2.5-coder:7b"
+  }
+}

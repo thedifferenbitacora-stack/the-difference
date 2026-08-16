@@ -1,0 +1,14 @@
+{
+    "id": 4,
+    "name": "Galeria",
+    "slug": "galeria",
+    "description": "Layout imagenes",
+    "structure": {
+        "footer": true,
+        "header": true,
+        "galeria_grid": true
+    },
+    "styles": null,
+    "active": false,
+    "created_at": "2026-07-20 21:24:51"
+}

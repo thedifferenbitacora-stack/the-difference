@@ -1,0 +1,132 @@
+[
+    {
+        "fecha": "2026-08-16 21:46:44",
+        "accion": "SALUD GLOBAL",
+        "detalle": "ok=66 fail=3"
+    },
+    {
+        "fecha": "2026-08-16 11:22:49",
+        "accion": "SALUD GLOBAL",
+        "detalle": "ok=66 fail=3"
+    },
+    {
+        "fecha": "2026-08-16 11:22:35",
+        "accion": "SALUD GLOBAL",
+        "detalle": "ok=66 fail=3"
+    },
+    {
+        "fecha": "2026-08-16 11:14:20",
+        "accion": "SALUD GLOBAL",
+        "detalle": "ok=65 fail=4"
+    },
+    {
+        "fecha": "2026-08-16 11:13:29",
+        "accion": "SALUD GLOBAL",
+        "detalle": "ok=65 fail=4"
+    },
+    {
+        "fecha": "2026-08-16 11:07:21",
+        "accion": "SALUD GLOBAL",
+        "detalle": "ok=65 fail=4"
+    },
+    {
+        "fecha": "2026-08-16 11:07:15",
+        "accion": "SALUD GLOBAL",
+        "detalle": "ok=65 fail=4"
+    },
+    {
+        "fecha": "2026-08-16 11:01:17",
+        "accion": "SALUD GLOBAL",
+        "detalle": "ok=65 fail=4"
+    },
+    {
+        "fecha": "2026-08-16 11:00:49",
+        "accion": "SALUD GLOBAL",
+        "detalle": "ok=65 fail=4"
+    },
+    {
+        "fecha": "2026-08-16 10:28:31",
+        "accion": "SALUD GLOBAL",
+        "detalle": "ok=65 fail=4"
+    },
+    {
+        "fecha": "2026-08-16 10:22:01",
+        "accion": "SALUD GLOBAL",
+        "detalle": "ok=64 fail=5"
+    },
+    {
+        "fecha": "2026-08-16 10:21:59",
+        "accion": "ELIMINAR→BACKUP",
+        "detalle": "admin\/patch-settings.php"
+    },
+    {
+        "fecha": "2026-08-16 10:19:41",
+        "accion": "SALUD GLOBAL",
+        "detalle": "ok=65 fail=5"
+    },
+    {
+        "fecha": "2026-08-16 10:19:34",
+        "accion": "SALUD GLOBAL",
+        "detalle": "ok=65 fail=5"
+    },
+    {
+        "fecha": "2026-08-16 10:13:49",
+        "accion": "SALUD GLOBAL",
+        "detalle": "ok=56 fail=14"
+    },
+    {
+        "fecha": "2026-08-16 10:06:07",
+        "accion": "SALUD GLOBAL",
+        "detalle": "ok=54 fail=15"
+    },
+    {
+        "fecha": "2026-08-16 10:05:57",
+        "accion": "SALUD GLOBAL",
+        "detalle": "ok=54 fail=15"
+    },
+    {
+        "fecha": "2026-08-16 10:05:50",
+        "accion": "SALUD GLOBAL",
+        "detalle": "ok=54 fail=15"
+    },
+    {
+        "fecha": "2026-08-16 10:05:48",
+        "accion": "ELIMINAR→BACKUP",
+        "detalle": "admin\/patch-settings.php"
+    },
+    {
+        "fecha": "2026-08-16 10:03:04",
+        "accion": "SALUD GLOBAL",
+        "detalle": "ok=55 fail=15"
+    },
+    {
+        "fecha": "2026-08-16 09:40:12",
+        "accion": "SALUD GLOBAL",
+        "detalle": "ok=53 fail=16"
+    },
+    {
+        "fecha": "2026-08-16 09:33:03",
+        "accion": "SALUD GLOBAL",
+        "detalle": "ok=53 fail=16"
+    },
+    {
+        "fecha": "2026-08-16 09:32:48",
+        "accion": "SALUD GLOBAL",
+        "detalle": "ok=54 fail=15"
+    },
+    {
+        "fecha": "2026-08-16 09:26:43",
+        "accion": "SALUD GLOBAL",
+        "detalle": "ok=25 fail=44"
+    },
+    {
+        "fecha": "2026-08-16 09:18:31",
+        "accion": "SALUD GLOBAL",
+        "detalle": "ok=25 fail=44"
+    },
+    {
+        "fecha": "2026-08-16 09:18:10",
+        "accion": "SALUD GLOBAL",
+        "detalle": "ok=25 fail=44"
+    }
+]

@@ -1,0 +1,36 @@
+[
+    {
+        "id": "RELOJ-6a822fd755bba",
+        "inicio": 1786916819761,
+        "fin": 1786916823336,
+        "duracion_seg": 3,
+        "duracion_horas": 0.0008333333333333334,
+        "valor_hora": 70000,
+        "valor": 58.333333333333336,
+        "fecha": "2026-08-16",
+        "hora_inicio": "21:46:59",
+        "hora_fin": "21:47:03",
+        "nodo": "general",
+        "tematica": "trabajo-consciente",
+        "rol": "fundador",
+        "proyecto": "the-difference",
+        "timestamp_registro": 1786916823
+    },
+    {
+        "id": "RELOJ-6a82391c3e7ab",
+        "inicio": 1786917624929,
+        "fin": 1786919196065,
+        "duracion_seg": 1571,
+        "duracion_horas": 0.4363888888888889,
+        "valor_hora": 70000,
+        "valor": 30547.222222222223,
+        "fecha": "2026-08-16",
+        "hora_inicio": "22:00:24",
+        "hora_fin": "22:26:36",
+        "nodo": "general",
+        "tematica": "trabajo-consciente",
+        "rol": "fundador",
+        "proyecto": "the-difference",
+        "timestamp_registro": 1786919196
+    }
+]

@@ -1,0 +1,28 @@
+{
+  "tareas": [
+    { "id": "T-001", "titulo": "Despliegue GitHub + Vercel", "proyecto": "the-difference", "area": "infraestructura", "estado": "pendiente", "estimado_horas": 3, "fecha_creacion": "2026-08-16", "fecha_cierre": null },
+    { "id": "T-002", "titulo": "Configurar dominio propio", "proyecto": "the-difference", "area": "infraestructura", "estado": "pendiente", "estimado_horas": 2, "fecha_creacion": "2026-08-16", "fecha_cierre": null },
+    { "id": "T-003", "titulo": "Probar reloj end-to-end", "proyecto": "the-difference", "area": "backend", "estado": "pendiente", "estimado_horas": 1, "fecha_creacion": "2026-08-16", "fecha_cierre": null },
+    { "id": "T-004", "titulo": "Unificar Recopilatorio (auto-leer horas y tareas)", "proyecto": "the-difference", "area": "backend", "estado": "pendiente", "estimado_horas": 3, "fecha_creacion": "2026-08-16", "fecha_cierre": null },
+    { "id": "T-005", "titulo": "Migrar datos a MySQL (opcional)", "proyecto": "the-difference", "area": "backend", "estado": "pendiente", "estimado_horas": 4, "fecha_creacion": "2026-08-16", "fecha_cierre": null },
+    { "id": "T-006", "titulo": "Knowledge Base + RAG local", "proyecto": "the-difference", "area": "backend", "estado": "pendiente", "estimado_horas": 6, "fecha_creacion": "2026-08-16", "fecha_cierre": null },
+    { "id": "T-007", "titulo": "API de trazabilidad / grafo", "proyecto": "the-difference", "area": "backend", "estado": "pendiente", "estimado_horas": 4, "fecha_creacion": "2026-08-16", "fecha_cierre": null },
+    { "id": "T-008", "titulo": "Validar gráficos con datos reales", "proyecto": "the-difference", "area": "frontend", "estado": "pendiente", "estimado_horas": 1, "fecha_creacion": "2026-08-16", "fecha_cierre": null },
+    { "id": "T-009", "titulo": "Landing del fundador bilingüe", "proyecto": "the-difference", "area": "frontend", "estado": "pendiente", "estimado_horas": 5, "fecha_creacion": "2026-08-16", "fecha_cierre": null },
+    { "id": "T-010", "titulo": "Dossier institucional bilingüe", "proyecto": "the-difference", "area": "frontend", "estado": "pendiente", "estimado_horas": 4, "fecha_creacion": "2026-08-16", "fecha_cierre": null },
+    { "id": "T-011", "titulo": "Modo Cine Web", "proyecto": "the-difference", "area": "frontend", "estado": "pendiente", "estimado_horas": 6, "fecha_creacion": "2026-08-16", "fecha_cierre": null },
+    { "id": "T-012", "titulo": "Páginas externas por nodo (Partner Nodes)", "proyecto": "the-difference", "area": "frontend", "estado": "pendiente", "estimado_horas": 6, "fecha_creacion": "2026-08-16", "fecha_cierre": null },
+    { "id": "T-013", "titulo": "Manifiesto ES/EN", "proyecto": "the-difference", "area": "contenido", "estado": "pendiente", "estimado_horas": 3, "fecha_creacion": "2026-08-16", "fecha_cierre": null },
+    { "id": "T-014", "titulo": "One-pager comercial universidades", "proyecto": "the-difference", "area": "contenido", "estado": "pendiente", "estimado_horas": 2, "fecha_creacion": "2026-08-16", "fecha_cierre": null },
+    { "id": "T-015", "titulo": "Pitch 30s / 3min / 10min", "proyecto": "the-difference", "area": "contenido", "estado": "pendiente", "estimado_horas": 2, "fecha_creacion": "2026-08-16", "fecha_cierre": null },
+    { "id": "T-016", "titulo": "Documentar roles y leyenda de clasificación", "proyecto": "the-difference", "area": "contenido", "estado": "pendiente", "estimado_horas": 1, "fecha_creacion": "2026-08-16", "fecha_cierre": null },
+    { "id": "T-017", "titulo": "Mapear 20 instituciones objetivo", "proyecto": "the-difference", "area": "alianzas", "estado": "pendiente", "estimado_horas": 3, "fecha_creacion": "2026-08-16", "fecha_cierre": null },
+    { "id": "T-018", "titulo": "Primera conversación institucional", "proyecto": "the-difference", "area": "alianzas", "estado": "pendiente", "estimado_horas": 2, "fecha_creacion": "2026-08-16", "fecha_cierre": null },
+    { "id": "T-019", "titulo": "Carta de Alianza Institucional", "proyecto": "the-difference", "area": "alianzas", "estado": "pendiente", "estimado_horas": 3, "fecha_creacion": "2026-08-16", "fecha_cierre": null },
+    { "id": "T-020", "titulo": "Plan de 90 días de ejecución", "proyecto": "the-difference", "area": "general", "estado": "pendiente", "estimado_horas": 2, "fecha_creacion": "2026-08-16", "fecha_cierre": null },
+    { "id": "T-021", "titulo": "Presupuesto y financiamiento", "proyecto": "the-difference", "area": "general", "estado": "pendiente", "estimado_horas": 2, "fecha_creacion": "2026-08-16", "fecha_cierre": null },
+    { "id": "T-022", "titulo": "Opus Magnum: guion del viaje sonoro", "proyecto": "the-difference", "area": "general", "estado": "pendiente", "estimado_horas": 4, "fecha_creacion": "2026-08-16", "fecha_cierre": null },
+    { "id": "T-023", "titulo": "Identidad visual del Panel-General", "proyecto": "the-difference", "area": "diseno", "estado": "pendiente", "estimado_horas": 2, "fecha_creacion": "2026-08-16", "fecha_cierre": null },
+    { "id": "T-024", "titulo": "Guía visual de referencia", "proyecto": "the-difference", "area": "diseno", "estado": "pendiente", "estimado_horas": 2, "fecha_creacion": "2026-08-16", "fecha_cierre": null }
+  ]
+}

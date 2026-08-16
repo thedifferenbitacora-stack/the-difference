@@ -1,0 +1,15 @@
+{
+    "id": 2,
+    "name": "Bitacora",
+    "slug": "bitacora",
+    "description": "Layout bitacora",
+    "structure": {
+        "header": true,
+        "entradas": true,
+        "nav_nodos": true,
+        "formulario": true
+    },
+    "styles": null,
+    "active": false,
+    "created_at": "2026-07-20 21:24:51"
+}

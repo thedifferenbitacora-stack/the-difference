@@ -1,0 +1,20 @@
+{
+    "portada": {
+        "titulo": "Portada",
+        "archivo": "index.php",
+        "activa": true,
+        "orden": 1
+    },
+    "menu": {
+        "titulo": "Men\u00fa",
+        "archivo": "menu.php",
+        "activa": true,
+        "orden": 2
+    },
+    "page-6a7297e5ed815": {
+        "titulo": "LOG ",
+        "archivo": "LOG.PHP",
+        "activa": true,
+        "orden": 3
+    }
+}

@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteBase /the-difference-php/
+
+# Si es la raíz, mostrar portada
+RewriteRule ^$ portada.php [L]
+
+# Evitar redirección infinita
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
