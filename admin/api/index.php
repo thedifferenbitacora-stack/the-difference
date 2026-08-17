@@ -1,9 +1,10 @@
 <?php
 /**
  * FRONT CONTROLLER · Vercel (runtime vercel-php)
- * Mapea cada URL al archivo real del proyecto.
+ * v2: chdir() para que los includes relativos (config.php, functions.php)
+ *     se resuelvan desde la carpeta de cada página.
  * Los assets estáticos (imágenes/videos) los sirve Vercel directo (filesystem).
- * El taller con guardado sigue siendo el local; Vercel es la galería pública.
+ * El taller con guardado sigue siendo el local; Vercel = galería pública.
  */
 $base = dirname(__DIR__);
 $uri  = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -19,7 +20,8 @@ if ($file && strpos($file, $base) === 0 && is_file($file)) {
     $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
 
     if ($ext === 'php') {
-        require $file;   // __DIR__ de cada archivo se mantiene correcto
+        chdir(dirname($file));   // ← LA CLAVE: ejecuta cada página desde su carpeta
+        require $file;           // __DIR__ de cada archivo se mantiene correcto
         exit;
     }
 
