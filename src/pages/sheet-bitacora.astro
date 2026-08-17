@@ -1,0 +1,197 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const API_URL = "https://script.google.com/macros/s/AKfycbzhKBMHtONep5OliJXBNjz1yzphA-oddL2WmowNv7G4C2b5Vi-gkU2jX5C9JemkkoJ0/exec";
+
+// ═══════════════════════════════════════════════
+// MATRIZ LOCAL DE BITÁCORA (BACKUP OFFLINE)
+// ═══════════════════════════════════════════════
+const matrizLocalBitacora = [
+  { timestamp: "2026-07-17 10:30:00", proyecto: "SYSTEM", tipo: "General", contenido: "Sistema inicializado correctamente", usuario: "System" },
+  { timestamp: "2026-07-17 10:35:00", proyecto: "INDEX", tipo: "Config", contenido: "Configuración de index cargada desde matriz local", usuario: "System" },
+  { timestamp: "2026-07-17 10:40:00", proyecto: "DASHBOARD", tipo: "General", contenido: "Dashboard cargado con 9 nodos activos", usuario: "System" },
+  { timestamp: "2026-07-17 11:00:00", proyecto: "API", tipo: "General", contenido: "Conexión con Google Sheets establecida", usuario: "System" }
+];
+
+let bitacora = matrizLocalBitacora;
+let success = false;
+let timestamp = new Date().toISOString();
+let dataSource = "LOCAL_MATRIX";
+
+try {
+  const res = await fetch(API_URL + '?t=' + Date.now());
+  const data = await res.json();
+  if (data.success && data.dashboard?.bitacora?.length > 0) {
+    bitacora = data.dashboard.bitacora;
+    success = true;
+    timestamp = data.timestamp;
+    dataSource = "GOOGLE_SHEETS";
+  }
+} catch (e) {
+  console.log("Usando matriz local:", e.message);
+}
+---
+
+<Layout title="THE DIFFERENCE // BITÁCORA">
+  <main class="sheet-page">
+    
+    <header class="sheet-header">
+      <a href="/sheet" class="back-link">← VOLVER A SHEETS</a>
+      <h1 class="page-title">:: BITÁCORA GLOBAL</h1>
+      <div class="sheet-status">
+        <span class="status-dot" style={`color: ${success ? 'var(--matrix-green)' : '#ffa500'}`}>●</span>
+        <span>{dataSource}</span>
+      </div>
+    </header>
+
+    <hr class="sheet-divider" />
+
+    <div class="info-box">
+      <p><strong>Total de registros:</strong> {bitacora.length}</p>
+      <p><strong>Fuente de datos:</strong> {dataSource}</p>
+      <p><strong>Última actualización:</strong> {new Date(timestamp).toLocaleString('es-ES')}</p>
+    </div>
+
+    <div class="sheet-table-container">
+      <table class="sheet-table">
+        <thead>
+          <tr>
+            <th>TIMESTAMP</th>
+            <th>PROYECTO</th>
+            <th>TIPO</th>
+            <th>CONTENIDO</th>
+            <th>USUARIO</th>
+          </tr>
+        </thead>
+        <tbody>
+          {bitacora.map((registro, index) => (
+            <tr>
+              <td class="col-timestamp">{registro.timestamp}</td>
+              <td><span class="proyecto-badge">{registro.proyecto}</span></td>
+              <td><span class="tipo-badge">{registro.tipo}</span></td>
+              <td class="col-contenido">{registro.contenido}</td>
+              <td>{registro.usuario}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="sheet-divider" />
+
+    <footer class="sheet-footer">
+      <a href="/" class="nav-link-small">→ IR AL INICIO</a>
+      <div>BITÁCORA MANAGER // LOCAL BACKUP ACTIVE</div>
+    </footer>
+
+  </main>
+</Layout>
+
+<style>
+  :root {
+    --bg-dark: #000000; --text-white: #ffffff; --punk-pink: #ff3e96;
+    --matrix-green: #00ff00; --border-color: rgba(255, 255, 255, 0.2);
+    --font-mono: 'Courier New', Courier, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  .sheet-page {
+    background-color: var(--bg-dark); color: var(--text-white);
+    font-family: var(--font-mono); min-height: 100vh; padding: 40px 30px;
+  }
+
+  .sheet-header {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;
+  }
+
+  .back-link, .nav-link-small {
+    color: var(--text-white); text-decoration: none; font-size: 14px; transition: color 0.3s;
+  }
+  .back-link:hover, .nav-link-small:hover { color: var(--punk-pink); }
+
+  .page-title { font-size: 24px; color: var(--punk-pink); letter-spacing: 2px; }
+
+  .sheet-status { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: bold; }
+  .status-dot { animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  .sheet-divider { border: none; border-top: 2px solid var(--border-color); margin: 30px 0; }
+
+  .info-box {
+    background: rgba(255, 62, 150, 0.05);
+    border: 1px solid var(--border-color);
+    padding: 15px 20px;
+    margin-bottom: 30px;
+    font-size: 13px;
+  }
+
+  .info-box p { margin-bottom: 5px; }
+
+  .sheet-table-container {
+    overflow-x: auto; max-height: 600px; overflow-y: auto;
+    border: 2px solid var(--border-color);
+  }
+
+  .sheet-table {
+    width: 100%; border-collapse: collapse; font-size: 12px;
+  }
+
+  .sheet-table thead {
+    position: sticky; top: 0;
+    background: rgba(255, 62, 150, 0.15); z-index: 10;
+  }
+
+  .sheet-table th {
+    padding: 12px 15px; text-align: left; font-weight: bold;
+    color: var(--punk-pink); border-bottom: 2px solid var(--border-color);
+    letter-spacing: 1px;
+  }
+
+  .sheet-table td {
+    padding: 10px 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-white);
+  }
+
+  .sheet-table tbody tr:hover { background: rgba(255, 62, 150, 0.05); }
+
+  .col-timestamp {
+    font-size: 10px; color: #888; white-space: nowrap;
+  }
+
+  .col-contenido {
+    max-width: 400px; overflow: hidden;
+    text-overflow: ellipsis; white-space: nowrap;
+    color: #b0b0b0;
+  }
+
+  .proyecto-badge {
+    display: inline-block; padding: 3px 10px;
+    background: rgba(255, 62, 150, 0.15); color: var(--punk-pink);
+    border: 1px solid var(--punk-pink); border-radius: 3px;
+    font-size: 10px; font-weight: bold;
+  }
+
+  .tipo-badge {
+    display: inline-block; padding: 3px 10px;
+    background: rgba(88, 166, 255, 0.15); color: #58a6ff;
+    border: 1px solid #58a6ff; border-radius: 3px;
+    font-size: 10px;
+  }
+
+  .sheet-footer {
+    display: flex; justify-content: space-between;
+    font-size: 11px; color: var(--text-white); opacity: 0.6;
+    margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color);
+  }
+
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: var(--bg-dark); }
+  ::-webkit-scrollbar-thumb { background: var(--border-color); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--punk-pink); }
+
+  @media (max-width: 768px) {
+    .sheet-page { padding: 20px 15px; }
+    .page-title { font-size: 18px; }
+    .col-contenido { max-width: 200px; }
+  }
+</style>

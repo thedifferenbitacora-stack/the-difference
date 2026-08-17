@@ -1,0 +1,511 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MenuReturn from '../components/MenuReturn.astro';
+---
+
+<Layout title="THE DIFFERENCE // Configurar IA">
+  <MenuReturn href="/chat" label="THE DIFFERENCE" />
+
+  <main class="config-ia-main">
+    <header class="config-header">
+      <h1> CONFIGURACIÓN DE IA AUTÓNOMA</h1>
+      <p class="config-subtitle">Conecta tu asistente a modelos locales o APIs externas</p>
+    </header>
+
+    <div class="config-container">
+      <!-- PRESETS RÁPIDOS -->
+      <section class="presets-section">
+        <h2>🚀 PRESETS RÁPIDOS</h2>
+        <div class="presets-grid">
+          <button class="preset-btn" data-endpoint="http://localhost:11434/api/chat" data-modelo="llama3">
+            <div class="preset-icon">🦙</div>
+            <div class="preset-nombre">OLLAMA LOCAL</div>
+            <div class="preset-desc">Llama 3 · Sin API Key</div>
+          </button>
+          
+          <button class="preset-btn" data-endpoint="https://api.openai.com/v1/chat/completions" data-modelo="gpt-4">
+            <div class="preset-icon">🤖</div>
+            <div class="preset-nombre">OPENAI</div>
+            <div class="preset-desc">GPT-4 · Requiere API Key</div>
+          </button>
+          
+          <button class="preset-btn" data-endpoint="https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent" data-modelo="gemini-pro">
+            <div class="preset-icon">✨</div>
+            <div class="preset-nombre">GEMINI</div>
+            <div class="preset-desc">Google · Requiere API Key</div>
+          </button>
+          
+          <button class="preset-btn" data-endpoint="http://localhost:1234/v1/chat/completions" data-modelo="local-model">
+            <div class="preset-icon">💻</div>
+            <div class="preset-nombre">LM STUDIO</div>
+            <div class="preset-desc">Local · Sin API Key</div>
+          </button>
+        </div>
+      </section>
+
+      <!-- CONFIGURACIÓN MANUAL -->
+      <section class="config-form-section">
+        <h2>🔧 CONFIGURACIÓN MANUAL</h2>
+        <form id="config-form" class="config-form">
+          <div class="form-group">
+            <label>Endpoint URL</label>
+            <input type="url" id="input-endpoint" placeholder="https://api.openai.com/v1/chat/completions" required />
+            <small class="form-hint">URL de la API (OpenAI compatible)</small>
+          </div>
+
+          <div class="form-group">
+            <label>Modelo</label>
+            <input type="text" id="input-modelo" placeholder="gpt-4, llama3, gemini-pro" required />
+            <small class="form-hint">Nombre del modelo a usar</small>
+          </div>
+
+          <div class="form-group">
+            <label>API Key (opcional para modelos locales)</label>
+            <input type="password" id="input-apikey" placeholder="sk-..." />
+            <small class="form-hint">Se guarda solo en tu navegador</small>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Temperature (0-1)</label>
+              <input type="number" id="input-temperature" min="0" max="1" step="0.1" value="0.7" />
+              <small class="form-hint">Creatividad (0=preciso, 1=creativo)</small>
+            </div>
+
+            <div class="form-group">
+              <label>Max Tokens</label>
+              <input type="number" id="input-maxtokens" min="100" max="8000" value="2000" />
+              <small class="form-hint">Longitud máxima de respuesta</small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>System Prompt (instrucciones para la IA)</label>
+            <textarea id="input-systemprompt" rows="4" placeholder="Eres un asistente especializado en..."></textarea>
+            <small class="form-hint">Personaliza el comportamiento de la IA</small>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">💾 GUARDAR CONFIGURACIÓN</button>
+            <button type="button" id="btn-probar" class="btn-secondary">🧪 PROBAR CONEXIÓN</button>
+            <button type="button" id="btn-limpiar" class="btn-secondary">🗑 LIMPIAR TODO</button>
+          </div>
+        </form>
+
+        <div id="config-status" class="config-status"></div>
+      </section>
+
+      <!-- INSTRUCCIONES -->
+      <section class="instrucciones-section">
+        <h2>📖 INSTRUCCIONES DE USO</h2>
+        <div class="instrucciones-content">
+          <div class="instruccion-card">
+            <h3>1. OLLAMA (Recomendado para uso local)</h3>
+            <p>Instala Ollama desde <a href="https://ollama.com" target="_blank">ollama.com</a></p>
+            <code>ollama run llama3</code>
+            <p>Usa el preset "OLLAMA LOCAL" y listo.</p>
+          </div>
+
+          <div class="instruccion-card">
+            <h3>2. LM STUDIO</h3>
+            <p>Descarga desde <a href="https://lmstudio.ai" target="_blank">lmstudio.ai</a></p>
+            <p>Inicia el servidor local y usa el preset "LM STUDIO".</p>
+          </div>
+
+          <div class="instruccion-card">
+            <h3>3. OPENAI / GEMINI</h3>
+            <p>Obtén tu API Key desde sus plataformas oficiales.</p>
+            <p>Ingresa el endpoint y la key en la configuración manual.</p>
+          </div>
+
+          <div class="instruccion-card">
+            <h3>4. PRIVACIDAD TOTAL</h3>
+            <p>Toda la configuración se guarda en tu navegador (localStorage).</p>
+            <p>Las conversaciones también son locales.</p>
+            <p>Nada se envía a servidores externos excepto las peticiones a la IA.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  :root {
+    --color-black: #000000;
+    --color-white: #ffffff;
+    --color-pink: #ff3e96;
+    --color-green: #00ff00;
+    --color-dim: #888888;
+    --border-alpha: rgba(255, 255, 255, 0.15);
+    --font-mono: 'Courier New', Courier, monospace;
+    --font-sans: 'Impact', 'Arial Black', sans-serif;
+  }
+
+  .config-ia-main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    font-family: var(--font-mono);
+    color: var(--color-white);
+  }
+
+  /* HEADER */
+  .config-header {
+    text-align: center;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--border-alpha);
+    padding-bottom: 20px;
+  }
+
+  .config-header h1 {
+    font-family: var(--font-sans);
+    font-size: 2rem;
+    color: var(--color-pink);
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+
+  .config-subtitle {
+    color: var(--color-dim);
+    font-size: 0.9rem;
+  }
+
+  /* SECCIONES */
+  section {
+    margin-bottom: 40px;
+  }
+
+  section h2 {
+    font-size: 1.2rem;
+    color: var(--color-pink);
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
+
+  /* PRESETS */
+  .presets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+  }
+
+  .preset-btn {
+    border: 1px solid var(--border-alpha);
+    background: rgba(255, 255, 255, 0.02);
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    color: var(--color-white);
+    font-family: var(--font-mono);
+  }
+
+  .preset-btn:hover {
+    border-color: var(--color-pink);
+    background: rgba(255, 62, 150, 0.05);
+    transform: translateY(-3px);
+  }
+
+  .preset-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+
+  .preset-nombre {
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+  }
+
+  .preset-desc {
+    font-size: 0.75rem;
+    color: var(--color-dim);
+  }
+
+  /* FORM */
+  .config-form-section {
+    border: 1px solid var(--border-alpha);
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .config-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .form-group label {
+    font-size: 0.85rem;
+    color: var(--color-white);
+    letter-spacing: 1px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-alpha);
+    color: var(--color-white);
+    padding: 12px;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    outline: none;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--color-pink);
+  }
+
+  .form-hint {
+    font-size: 0.75rem;
+    color: var(--color-dim);
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--color-pink);
+    border: 2px solid var(--color-pink);
+    color: var(--color-black);
+    padding: 12px 25px;
+    font-family: var(--font-mono);
+    font-weight: bold;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: transparent;
+    color: var(--color-pink);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    border: 1px solid var(--border-alpha);
+    color: var(--color-white);
+    padding: 12px 25px;
+    font-family: var(--font-mono);
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--color-pink);
+    color: var(--color-pink);
+  }
+
+  .config-status {
+    margin-top: 20px;
+    padding: 15px;
+    font-size: 0.9rem;
+    display: none;
+  }
+
+  .config-status.success {
+    display: block;
+    border: 1px solid var(--color-green);
+    color: var(--color-green);
+    background: rgba(0, 255, 0, 0.05);
+  }
+
+  .config-status.error {
+    display: block;
+    border: 1px solid var(--color-pink);
+    color: var(--color-pink);
+    background: rgba(255, 62, 150, 0.05);
+  }
+
+  /* INSTRUCCIONES */
+  .instrucciones-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  .instruccion-card {
+    border: 1px solid var(--border-alpha);
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .instruccion-card h3 {
+    font-size: 1rem;
+    color: var(--color-pink);
+    margin-bottom: 15px;
+  }
+
+  .instruccion-card p {
+    font-size: 0.85rem;
+    color: var(--color-dim);
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+
+  .instruccion-card code {
+    display: block;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 8px;
+    color: var(--color-green);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    margin: 10px 0;
+  }
+
+  .instruccion-card a {
+    color: var(--color-pink);
+  }
+
+  @media (max-width: 768px) {
+    .config-header h1 {
+      font-size: 1.5rem;
+    }
+
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+
+    .presets-grid,
+    .instrucciones-content {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('config-form');
+    const inputEndpoint = document.getElementById('input-endpoint');
+    const inputModelo = document.getElementById('input-modelo');
+    const inputApikey = document.getElementById('input-apikey');
+    const inputTemperature = document.getElementById('input-temperature');
+    const inputMaxtokens = document.getElementById('input-maxtokens');
+    const inputSystemprompt = document.getElementById('input-systemprompt');
+    const configStatus = document.getElementById('config-status');
+    const btnProbar = document.getElementById('btn-probar');
+    const btnLimpiar = document.getElementById('btn-limpiar');
+    const presetBtns = document.querySelectorAll('.preset-btn');
+
+    // Cargar configuración guardada
+    function cargarConfig() {
+      try {
+        const config = JSON.parse(localStorage.getItem('ia-config') || '{}');
+        if (config.endpoint) inputEndpoint.value = config.endpoint;
+        if (config.modelo) inputModelo.value = config.modelo;
+        if (config.apiKey) inputApikey.value = config.apiKey;
+        if (config.temperature) inputTemperature.value = config.temperature;
+        if (config.maxTokens) inputMaxtokens.value = config.maxTokens;
+        if (config.systemPrompt) inputSystemprompt.value = config.systemPrompt;
+      } catch (e) {
+        console.error('Error cargando config:', e);
+      }
+    }
+
+    // Guardar configuración
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const config = {
+        endpoint: inputEndpoint.value,
+        modelo: inputModelo.value,
+        apiKey: inputApikey.value,
+        temperature: parseFloat(inputTemperature.value),
+        maxTokens: parseInt(inputMaxtokens.value),
+        systemPrompt: inputSystemprompt.value
+      };
+
+      localStorage.setItem('ia-config', JSON.stringify(config));
+      
+      configStatus.className = 'config-status success';
+      configStatus.textContent = '✅ Configuración guardada exitosamente. Ya puedes usar el chat.';
+      
+      setTimeout(() => {
+        configStatus.style.display = 'none';
+      }, 3000);
+    });
+
+    // Presets rápidos
+    presetBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        inputEndpoint.value = btn.dataset.endpoint;
+        inputModelo.value = btn.dataset.modelo;
+        inputApikey.value = '';
+        
+        configStatus.className = 'config-status success';
+        configStatus.textContent = `✅ Preset aplicado: ${btn.dataset.modelo}. Haz clic en "Guardar Configuración" para confirmar.`;
+      });
+    });
+
+    // Probar conexión
+    btnProbar.addEventListener('click', async () => {
+      configStatus.className = 'config-status';
+      configStatus.style.display = 'block';
+      configStatus.textContent = '🧪 Probando conexión...';
+
+      try {
+        const config = {
+          endpoint: inputEndpoint.value,
+          modelo: inputModelo.value,
+          apiKey: inputApikey.value
+        };
+
+        const response = await fetch(config.endpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            ...(config.apiKey ? { 'Authorization': `Bearer ${config.apiKey}` } : {})
+          },
+          body: JSON.stringify({
+            model: config.modelo,
+            messages: [{ role: 'user', content: 'Hola' }],
+            max_tokens: 10
+          })
+        });
+
+        if (response.ok) {
+          configStatus.className = 'config-status success';
+          configStatus.textContent = '✅ Conexión exitosa. La IA está lista para usar.';
+        } else {
+          throw new Error(`HTTP ${response.status}`);
+        }
+      } catch (error) {
+        configStatus.className = 'config-status error';
+        configStatus.textContent = `❌ Error de conexión: ${error.message}`;
+      }
+    });
+
+    // Limpiar todo
+    btnLimpiar.addEventListener('click', () => {
+      if (confirm('¿Limpiar toda la configuración y conversaciones?')) {
+        localStorage.removeItem('ia-config');
+        localStorage.removeItem('conversaciones');
+        form.reset();
+        configStatus.className = 'config-status success';
+        configStatus.textContent = '🗑 Configuración y conversaciones eliminadas.';
+      }
+    });
+
+    // Inicializar
+    cargarConfig();
+  });
+</script>

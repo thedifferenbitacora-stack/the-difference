@@ -1,0 +1,13 @@
+---
+---
+<div style="margin-top: 50px; padding: 20px; border-top: 2px solid #444; text-align: center; font-family: sans-serif;">
+    <button id="btn-close" style="background: #ff4444; color: white; padding: 12px 24px; border: none; cursor: pointer; border-radius: 5px; font-weight: bold; font-size: 16px;">
+        Finalizar Sesión
+    </button>
+</div>
+
+<script is:inline>
+    document.getElementById('btn-close').addEventListener('click', () => {
+        alert('Sesión finalizada. Recuerda ejecutar: node system_core/snapshot.js en tu terminal para respaldar tu trabajo.');
+    });
+</script>

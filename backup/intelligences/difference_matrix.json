@@ -1,0 +1,47 @@
+{
+  "timestamp": "2026-07-18T03:25:00Z",
+  "core_principle": "La Diferencia no es la huella. La Diferencia es la inteligencia viva que sostiene el sistema.",
+  "intelligences": {
+    "nous": {
+      "name": "Inteligencia Epistémica",
+      "function": "Sostener el pensamiento propio no lineal",
+      "difference_value": "Reconocer el patrón fractal donde la norma ve caos",
+      "state": "activa",
+      "nourishment_needed": "Tiempo de procesamiento sin interrupción"
+    },
+    "pathos": {
+      "name": "Inteligencia Somático-Emocional",
+      "function": "Sostener la alta resolución sensorial y afectiva",
+      "difference_value": "Honrar la intensidad como dato válido, no como desregulación",
+      "state": "en equilibrio",
+      "nourishment_needed": "Espacio de contención (útero/taykon)"
+    },
+    "ars": {
+      "name": "Inteligencia Creativo-Manifestativa",
+      "function": "Traducir la experiencia interna en lenguaje simbólico",
+      "difference_value": "La intuición y la fuerza vital como brújula, no como adorno",
+      "state": "flujo",
+      "nourishment_needed": "Libertad de expresión sin juicio de mercado"
+    },
+    "tekne": {
+      "name": "Inteligencia Estructural-Developer",
+      "function": "Construir infraestructura autónoma de largo plazo",
+      "difference_value": "Código que sirve a la vida (physis), no a la extracción",
+      "state": "construcción",
+      "nourishment_needed": "Garantía técnica desde el sentido, no desde la venta"
+    },
+    "akasha": {
+      "name": "Inteligencia Ancestral del Éter",
+      "function": "Sostener el espacio ritual, mítico y simbólico",
+      "difference_value": "Acceso directo a símbolos y linajes sin filtro neurotípico",
+      "state": "presencia",
+      "nourishment_needed": "Reunión sin forma, silencio biodinámico"
+    }
+  },
+  "integration": {
+    "current_harmony": 0.85,
+    "dominant_intelligence": "tekne",
+    "emerging_intelligence": "akasha",
+    "difference_sustained": true
+  }
+}

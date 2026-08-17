@@ -1,0 +1,199 @@
+---
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MENÚ - THE DIFFERENCE</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background: #000000;
+      min-height: 70vh;
+      font-family: 'Helvetica', 'Arial', sans-serif;
+      color: #ce3131;
+      overflow: hidden;
+    }
+    
+    .main-container {
+      position: relative;
+      width: 90vw;
+      height: 88vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    
+    /* BOTÓN PRINCIPAL - ARRIBA */
+    .main-btn {
+      position: absolute;
+      top: 7%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 76px;
+      font-weight: 900;
+      font-family: 'Helvetica', 'Arial', sans-serif;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 40px;
+      border: 8px solid #ffffff;
+      border: 8px solid #edecec;
+      padding: 20px 50px;
+      background: #000000;
+      text-decoration: none;
+      cursor: pointer;
+      z-index: 20;
+      white-space: nowrap;
+      transition: all 0.8s ease;
+    }
+    
+    .main-btn:hover {
+      background: #fffcfc00;
+      transform: translateX(-50%) scale(1.05);
+      box-shadow: 0 0 20px rgb(255, 4, 150);
+      border-bottom-color: #ff09c2;
+    }
+    
+    /* GRID DE BOTONES - CENTRO */
+    .menu-grid {
+      position: relative;
+      top: 90;
+      transform: translateX(-40%);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px 15px;
+      max-width: 1000px;
+      width: 45%;
+      z-index: 9;
+    }
+    
+    .menu-btn {
+      padding: 20px 30px;
+      background: #000000;
+      border: 4ch solid #ffffff;
+      color: #ffffff;
+      text-decoration: none;
+      font-family: 'Helvetica', 'Arial', sans-serif;
+      font-weight: 900;
+      font-size:50px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 20px;
+    }
+    
+    .menu-btn:hover {
+      background: #22222200;
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgb(255, 3, 226);
+    }
+    
+    /* BOTÓN INFERIOR - MISMO ESTILO QUE "LE TEMATIK" DEL INDEX */
+    .bottom-btn {
+      position: absolute;
+      bottom: 5%;
+      left: 40%;
+      transform: translateX(-50%);
+      padding: 10px 25px;
+      background: transparent;
+      border: 6px solid #ffffff;
+      color: #fefefc;
+      text-decoration: none;
+      font-family: 'Helvetica', 'Arial', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 10;
+      display: inline-block;
+    }
+    
+    .bottom-btn:hover {
+      background: rgba(255, 215, 0, 0.1);
+      transform: translateX(-50%) scale(1.05);
+      box-shadow: 0 0 20px rgba(255, 3, 171, 0.718);
+    }
+    
+    /* RESPONSIVE */
+    @media (max-width: 300px) {
+      .main-btn {
+        font-size: 36px;
+        padding: 15px 30px;
+        top: 10%;
+      }
+      
+      .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px 15px;
+        top: 35%;
+      }
+      
+      .menu-btn {
+        padding: 14px 16px;
+        font-size: 14px;
+        min-height: 30px;
+      }
+    }
+    
+    @media (max-width: 500px) {
+      .main-btn {
+        font-size: 24px;
+        padding: 12px 20px;
+        letter-spacing: 4px;
+      }
+      
+      .menu-grid {
+        grid-template-columns: 2fr;
+        gap: 10px;
+        top: 40%;
+        width: 85%;
+      }
+      
+      .bottom-btn {
+        font-size: 14px;
+        padding: 15px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <!-- BOTÓN PRINCIPAL - ARRIBA -->
+    <a href="/the-difference" class="main-btn">
+      THE DIFFERENCE
+    </a>
+    
+    <!-- GRID DE BOTONES - CENTRO -->
+    <div class="menu-grid">
+      <a href="/sheet-nodos" class="menu-btn">LOG</a>
+      <a href="#" class="menu-btn">LE TEMATIK</a>
+      <a href="#" class="menu-btn">PROJECT NADA BRAHMA</a>
+      <a href="#" class="menu-btn">TEXVN</a>
+      <a href="#" class="menu-btn">QUANTUMLAB</a>
+      <a href="#" class="menu-btn">PENSAMIENTO AUTISTA</a>
+      <a href="#" class="menu-btn">SAIAYIN DO</a>
+      <a href="#" class="menu-btn">ARS TEKNE</a>
+      <a href="#" class="menu-btn">QUIRÓN THEATRE</a>
+    </div>
+    
+    <!-- BOTÓN INFERIOR - SELLO (SIEMPRE AL INDEX) -->
+    <a href="/" class="bottom-btn">LE TEMATIK DESIGN</a>
+  </div>
+</body>
+</html>

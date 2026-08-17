@@ -1,0 +1,257 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="THE DIFFERENCE // SINTESIS - CONCIENCIA">
+  <main class="moment-page sintesis-page">
+    
+    <header class="moment-header">
+      <a href="/" class="back-link">← VOLVER AL INICIO</a>
+      <nav class="moment-nav">
+        <a href="/tesis" class="nav-link">GENESIS</a>
+        <a href="/antitesis" class="nav-link">ANTITESIS</a>
+        <a href="/sintesis" class="nav-active">SINTESIS</a>
+      </nav>
+    </header>
+
+    <div class="moment-container">
+      <div class="moment-badge sintesis-badge">[SINTESIS]</div>
+      
+      <h1 class="moment-title">LA CONCIENCIA</h1>
+      <h2 class="moment-subtitle">AMPLIFICACIÓN CREATIVA</h2>
+
+      <div class="moment-content">
+        <div class="content-block">
+          <h3>Le Tematik: Experiencias Culturales</h3>
+          <p><strong>Le Tematik</strong> representa el espacio donde esta investigación se convierte en experiencias culturales, diseño, música, educación, tecnología e innovación.</p>
+        </div>
+
+        <div class="content-block highlight">
+          <h3>No Automatizar, sino Amplificar</h3>
+          <p class="statement"><strong>No buscamos automatizar a las personas.</strong></p>
+          <p class="statement-large"><strong>Buscamos ampliar la conciencia</strong> mediante sistemas creativos que permitan comprender mejor cómo pensamos, sentimos, aprendemos y creamos.</p>
+        </div>
+
+        <div class="final-statement">
+          <p>Este es el ciclo completo: desde el fundamento filosófico del Pensamiento Autista, pasando por la integración tecnológica asistida por IA, hasta la manifestación creativa que amplifica la conciencia humana.</p>
+          <p><strong>THE DIFFERENCE</strong> es el puente entre lo que somos y lo que podemos llegar a ser.</p>
+        </div>
+
+        <div class="moment-footer-nav">
+          <a href="/antitesis" class="prev-link">← ANTITESIS</a>
+          <span class="footer-label">La síntesis del sistema</span>
+          <a href="/" class="next-link">VOLVER AL INICIO</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</Layout>
+
+<style>
+  :root {
+    --bg-dark: #000000;
+    --text-white: #ffffff;
+    --punk-pink: #ff3e96;
+    --matrix-green: #00ff00;
+    --border-color: rgba(255, 255, 255, 0.2);
+    --font-mono: 'Courier New', Courier, monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  .moment-page {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    font-family: var(--font-mono);
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+
+  .moment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 60px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .back-link {
+    color: var(--text-white);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+  }
+
+  .back-link:hover { color: var(--punk-pink); }
+
+  .moment-nav {
+    display: flex;
+    gap: 30px;
+  }
+
+  .nav-link, .nav-active {
+    font-size: 13px;
+    text-decoration: none;
+    letter-spacing: 2px;
+    padding: 8px 16px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s;
+  }
+
+  .nav-link:hover {
+    border-color: var(--punk-pink);
+    color: var(--punk-pink);
+  }
+
+  .nav-active {
+    border-color: #a371f7;
+    color: #a371f7;
+    font-weight: bold;
+  }
+
+  .moment-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .moment-badge {
+    font-size: 11px;
+    letter-spacing: 3px;
+    padding: 8px 20px;
+    border: 1px solid #a371f7;
+    color: #a371f7;
+    display: inline-block;
+    margin-bottom: 30px;
+  }
+
+  .sintesis-badge { border-color: #a371f7; color: #a371f7; }
+
+  .moment-title {
+    font-size: 4rem;
+    letter-spacing: 0.2rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: normal;
+  }
+
+  .moment-subtitle {
+    font-size: 1.5rem;
+    color: #a371f7;
+    margin-bottom: 60px;
+    letter-spacing: 0.1rem;
+  }
+
+  .moment-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .content-block {
+    padding: 30px;
+    border: 1px solid var(--border-color);
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .content-block h3 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: var(--text-white);
+    font-weight: normal;
+    letter-spacing: 0.05rem;
+  }
+
+  .content-block p {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: #b0b0b0;
+    text-align: justify;
+    margin-bottom: 15px;
+  }
+
+  .content-block p:last-child {
+    margin-bottom: 0;
+  }
+
+  .content-block.highlight {
+    border-left: 3px solid #a371f7;
+    background: rgba(163, 113, 247, 0.03);
+    text-align: center;
+  }
+
+  .statement {
+    font-size: 1.3rem;
+    color: var(--text-white);
+    margin-bottom: 25px;
+    font-weight: 600;
+  }
+
+  .statement-large {
+    font-size: 1.6rem;
+    color: #a371f7;
+    line-height: 1.6;
+    font-weight: 600;
+  }
+
+  .final-statement {
+    padding: 40px;
+    border: 2px solid #a371f7;
+    background: rgba(163, 113, 247, 0.05);
+    text-align: center;
+  }
+
+  .final-statement p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #c0c0c0;
+    margin-bottom: 20px;
+  }
+
+  .final-statement p:last-child {
+    font-size: 1.3rem;
+    color: var(--text-white);
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+
+  .moment-footer-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .footer-label {
+    font-size: 12px;
+    color: #666;
+    letter-spacing: 1px;
+  }
+
+  .prev-link, .next-link {
+    font-size: 1.2rem;
+    color: #a371f7;
+    text-decoration: none;
+    letter-spacing: 2px;
+    border: 1px solid #a371f7;
+    padding: 12px 30px;
+    transition: all 0.3s;
+  }
+
+  .prev-link:hover, .next-link:hover {
+    background: #a371f7;
+    color: var(--bg-dark);
+  }
+
+  @media (max-width: 768px) {
+    .moment-title { font-size: 2.5rem; }
+    .moment-subtitle { font-size: 1.1rem; }
+    .moment-nav { flex-direction: column; gap: 10px; }
+    .moment-footer-nav { flex-direction: column; gap: 20px; }
+    .content-block { padding: 20px; }
+    .statement-large { font-size: 1.3rem; }
+  }
+</style>

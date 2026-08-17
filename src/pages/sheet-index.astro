@@ -1,0 +1,197 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const API_URL = "https://script.google.com/macros/s/AKfycbzhKBMHtONep5OliJXBNjz1yzphA-oddL2WmowNv7G4C2b5Vi-gkU2jX5C9JemkkoJ0/exec";
+
+// ═══════════════════════════════════════════════
+// MATRIZ LOCAL DE INDEX_CONFIG (BACKUP OFFLINE)
+// ═══════════════════════════════════════════════
+const matrizLocalIndexConfig = {
+  MAIN: {
+    container: {
+      padding_top: "60px",
+      fade_duration: "1.5s",
+      text_align: "center",
+      max_width: "900px"
+    }
+  },
+  IMAGE: {
+    container: {
+      width: "234px",
+      height: "234px",
+      margin_bottom: "30px",
+      border_width: "3px",
+      border_color: "#ffffff",
+      border_radius: "50%",
+      box_shadow: "0 0 40px rgba(255, 255, 255, 0.15)"
+    }
+  },
+  TITLE: {
+    h1: {
+      text: "FEELING AUSTISTIC",
+      font_size: "3.5rem",
+      letter_spacing: "0.2rem",
+      margin_bottom: "8px",
+      font_weight: "normal",
+      text_shadow: "0 0 20px rgba(255, 255, 255, 0.3)"
+    }
+  },
+  SUBTITLE: {
+    p: {
+      text: "NEURODIVERGENCE CREATIVE PHILOSOPHY PLATFORM SYSTEM LOG",
+      font_size: "1rem",
+      color: "#e0e0e0",
+      margin_bottom: "35px",
+      letter_spacing: "0.08rem",
+      line_height: "1.4"
+    }
+  },
+  BUTTON_CONTAINER: {
+    div: {
+      margin_bottom: "35px",
+      padding: "0 20px"
+    }
+  },
+  BUTTON: {
+    link: {
+      text: "THE DIFFERENCE",
+      href: "/menu",
+      border_width: "3px",
+      border_color: "#ffffff",
+      border_color_hover: "#ff3e96",
+      color: "#ffffff",
+      color_hover: "#ff3e96",
+      padding: "25px 60px",
+      font_size: "2rem",
+      letter_spacing: "0.3rem",
+      display: "inline-block",
+      background: "transparent",
+      font_weight: "bold"
+    }
+  },
+  DESCRIPTION: {
+    container: {
+      max_width: "700px",
+      color: "#b0b0b0",
+      line_height: "1.7",
+      font_size: "0.9rem",
+      text_align: "center",
+      margin_top: "20px",
+      padding: "20px 30px",
+      background: "rgba(255, 255, 255, 0.02)",
+      border_left: "2px solid #ff3e96",
+      border_right: "2px solid #ff3e96"
+    }
+  }
+};
+
+// Intentar cargar desde API, si falla usar matriz local
+let indexConfig = matrizLocalIndexConfig;
+let success = false;
+let timestamp = new Date().toISOString();
+let dataSource = "LOCAL_MATRIX";
+
+try {
+  const res = await fetch(API_URL + '?t=' + Date.now());
+  const data = await res.json();
+  if (data.success && data.indexConfig && Object.keys(data.indexConfig).length > 0) {
+    indexConfig = { ...matrizLocalIndexConfig, ...data.indexConfig };
+    success = true;
+    timestamp = data.timestamp;
+    dataSource = "GOOGLE_SHEETS";
+  }
+} catch (e) {
+  console.log("Usando matriz local:", e.message);
+}
+
+// Convertir objeto anidado a array plano
+const configRows = [];
+Object.entries(indexConfig).forEach(([seccion, elementos]) => {
+  Object.entries(elementos).forEach(([elemento, propiedades]) => {
+    Object.entries(propiedades).forEach(([propiedad, valor]) => {
+      configRows.push({ seccion, elemento, propiedad, valor });
+    });
+  });
+});
+---
+
+<Layout title="THE DIFFERENCE // INDEX_CONFIG">
+  <main class="sheet-page">
+    
+    <header class="sheet-header">
+      <a href="/sheet" class="back-link">← VOLVER A SHEETS</a>
+      <h1 class="page-title">:: INDEX_CONFIG</h1>
+      <div class="sheet-status">
+        <span class="status-dot" style={`color: ${success ? 'var(--matrix-green)' : '#ffa500'}`}>●</span>
+        <span>{dataSource}</span>
+      </div>
+    </header>
+
+    <hr class="sheet-divider" />
+
+    <div class="info-box">
+      <p><strong>Total de registros:</strong> {configRows.length}</p>
+      <p><strong>Fuente de datos:</strong> {dataSource}</p>
+      <p><strong>Última actualización:</strong> {new Date(timestamp).toLocaleString('es-ES')}</p>
+    </div>
+
+    <div class="sheet-table-container">
+      <table class="sheet-table">
+        <thead>
+          <tr>
+            <th>SECCIÓN</th>
+            <th>ELEMENTO</th>
+            <th>PROPIEDAD</th>
+            <th>VALOR</th>
+          </tr>
+        </thead>
+        <tbody>
+          {configRows.map((row) => (
+            <tr>
+              <td class="col-seccion">{row.seccion}</td>
+              <td class="col-elemento">{row.elemento}</td>
+              <td class="col-propiedad">{row.propiedad}</td>
+              <td class="col-valor">{row.valor}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="sheet-divider" />
+
+    <footer class="sheet-footer">
+      <a href="/" class="nav-link-small">→ IR AL INICIO</a>
+      <div>INDEX_CONFIG MANAGER // LOCAL BACKUP ACTIVE</div>
+    </footer>
+
+  </main>
+</Layout>
+
+<style>
+  :root {
+    --bg-dark: #000000; --text-white: #ffffff; --punk-pink: #ff3e96;
+    --matrix-green: #00ff00; --border-color: rgba(255, 255, 255, 0.2);
+    --font-mono: 'Courier New', Courier, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  .sheet-page {
+    background-color: var(--bg-dark); color: var(--text-white);
+    font-family: var(--font-mono); min-height: 100vh; padding: 40px 30px;
+  }
+
+  .sheet-header {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;
+  }
+
+  .back-link, .nav-link-small {
+    color: var(--text-white); text-decoration: none; font-size: 14px; transition: color 0.3s;
+  }
+  .back-link:hover, .nav-link-small:hover { color: var(--punk-pink); }
+
+  .page-title { font-size: 24px; color: var(--punk-pink); letter-spacing: 2px; }
+
+  .sheet-status { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: bold; }
+  .status-dot { animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.

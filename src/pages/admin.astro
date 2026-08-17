@@ -1,0 +1,640 @@
+---
+import fs from 'fs/promises';
+import path from 'path';
+
+const configPath = path.join(process.cwd(), 'src/data/design-config.json');
+let config = { index: { elements: [], globalStyles: {}, backgroundImage: '' } };
+
+try {
+  const data = await fs.readFile(configPath, 'utf-8');
+  config = JSON.parse(data);
+} catch (e) {
+  console.log('Config por defecto');
+}
+
+const pageConfig = config.index;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Control - THE DIFFERENCE</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0a0a0a;
+      color: #ffffff;
+      min-height: 100vh;
+    }
+    
+    .admin-layout {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      height: 100vh;
+    }
+    
+    /* Vista Previa */
+    .preview-area {
+      position: relative;
+      background: #000;
+      overflow: hidden;
+    }
+    
+    .preview-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    
+    .preview-element {
+      position: absolute;
+      cursor: move;
+      border: 2px dashed transparent;
+      transition: border 0.3s;
+    }
+    
+    .preview-element:hover,
+    .preview-element.selected {
+      border: 2px dashed #00ff00;
+    }
+    
+    /* Panel de Control */
+    .control-panel {
+      background: #1a1a2e;
+      border-left: 3px solid #ffd700;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    
+    .panel-header {
+      text-align: center;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #ffd700;
+      margin-bottom: 20px;
+    }
+    
+    .panel-header h1 {
+      color: #ffd700;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+    
+    .element-selector {
+      margin-bottom: 20px;
+    }
+    
+    .element-selector label {
+      display: block;
+      color: #ffd700;
+      margin-bottom: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+    
+    .element-selector select {
+      width: 100%;
+      padding: 10px;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid #333;
+      color: #fff;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    
+    .control-section {
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+    
+    .control-section h3 {
+      color: #ffd700;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,215,0,0.3);
+    }
+    
+    .control-item {
+      margin-bottom: 12px;
+    }
+    
+    .control-item label {
+      display: block;
+      color: #888;
+      font-size: 0.8rem;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+    }
+    
+    .control-item input,
+    .control-item select,
+    .control-item textarea {
+      width: 100%;
+      padding: 8px;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid #333;
+      color: #fff;
+      border-radius: 5px;
+      font-size: 0.9rem;
+    }
+    
+    .control-item input[type="color"] {
+      height: 40px;
+      cursor: pointer;
+    }
+    
+    .control-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    
+    .btn-save {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      font-weight: 900;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    
+    .btn-save:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 30px rgba(0,255,0,0.4);
+    }
+    
+    .btn-back {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: transparent;
+      border: 2px solid #ffd700;
+      color: #ffd700;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-top: 10px;
+    }
+    
+    .btn-back:hover {
+      background: #ffd700;
+      color: #000;
+    }
+    
+    .status-message {
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 10px;
+      text-align: center;
+      font-weight: 700;
+      display: none;
+    }
+    
+    .status-message.success {
+      background: rgba(0,255,0,0.2);
+      border: 1px solid #00ff00;
+      color: #00ff00;
+      display: block;
+    }
+    
+    .status-message.error {
+      background: rgba(255,0,0,0.2);
+      border: 1px solid #ff0000;
+      color: #ff0000;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="admin-layout">
+    <!-- VISTA PREVIA -->
+    <div class="preview-area" id="previewArea">
+      <img src={pageConfig.backgroundImage} class="preview-image" alt="Preview" />
+      
+      {pageConfig.elements.map((el: any) => `
+        <div 
+          class="preview-element"
+          data-id="${el.id}"
+          data-type="${el.type}"
+          style="${Object.entries(el.styles).map(([k,v]) => `${k}: ${v}`).join('; ')}"
+          onclick="selectElement('${el.id}')"
+        >
+          ${el.type === 'button' 
+            ? `<a href="${el.link || '#'}" style="text-decoration:none;color:inherit;display:block;pointer-events:none;">${el.content}</a>`
+            : `<span>${el.content}</span>`
+          }
+        </div>
+      `).join('')}
+    </div>
+    
+    <!-- PANEL DE CONTROL -->
+    <div class="control-panel">
+      <div class="panel-header">
+        <h1>️ Panel de Control</h1>
+        <p style="color:#888;font-size:0.8rem;margin-top:5px;">THE DIFFERENCE</p>
+      </div>
+      
+      <!-- Selector de Elemento -->
+      <div class="element-selector">
+        <label> Seleccionar Elemento</label>
+        <select id="elementSelect" onchange="loadElementProperties(this.value)">
+          <option value="">-- Selecciona --</option>
+          {pageConfig.elements.map((el: any) => `
+            <option value="${el.id}">${el.content} (${el.type})</option>
+          `).join('')}
+        </select>
+      </div>
+      
+      <!-- Controles -->
+      <div id="controlsContainer">
+        <p style="color:#666;text-align:center;padding:20px;">Selecciona un elemento para editar</p>
+      </div>
+      
+      <!-- Botón Guardar -->
+      <button class="btn-save" onclick="saveDesign()">💾 Guardar Cambios</button>
+      <div id="statusMessage" class="status-message"></div>
+      
+      <a href="/" class="btn-back">← Ver Página Pública</a>
+    </div>
+  </div>
+  
+  <script>
+    let currentElement = null;
+    let currentElementId = null;
+    let isDragging = false;
+    let startX, startY, origX, origY;
+    
+    function selectElement(id) {
+      document.querySelectorAll('.preview-element').forEach(el => {
+        el.classList.remove('selected');
+      });
+      
+      const el = document.querySelector(`[data-id="${id}"]`);
+      if (el) {
+        el.classList.add('selected');
+        currentElement = el;
+        currentElementId = id;
+        document.getElementById('elementSelect').value = id;
+        loadElementProperties(id);
+      }
+    }
+    
+    function loadElementProperties(id) {
+      if (!id) return;
+      
+      const el = document.querySelector(`[data-id="${id}"]`);
+      if (!el) return;
+      
+      currentElement = el;
+      currentElementId = id;
+      
+      const s = el.style;
+      const child = el.querySelector('span, a');
+      const type = el.dataset.type;
+      
+      const controlsHTML = `
+        <!-- CONTENIDO -->
+        <div class="control-section">
+          <h3>📝 Contenido</h3>
+          <div class="control-item">
+            <label>Texto</label>
+            <input type="text" id="ctrl-content" value="${child?.textContent || ''}" oninput="updateProp('content', this.value)">
+          </div>
+          ${type === 'button' ? `
+            <div class="control-item">
+              <label>Link URL</label>
+              <input type="text" id="ctrl-link" value="${el.querySelector('a')?.href || ''}" oninput="updateProp('link', this.value)">
+            </div>
+          ` : ''}
+        </div>
+        
+        <!-- POSICIÓN -->
+        <div class="control-section">
+          <h3>📍 Posición</h3>
+          <div class="control-row">
+            <div class="control-item">
+              <label>Top (px)</label>
+              <input type="number" value="${parseInt(s.top) || ''}" oninput="updateStyle('top', this.value + 'px')">
+            </div>
+            <div class="control-item">
+              <label>Bottom (px)</label>
+              <input type="number" value="${parseInt(s.bottom) || ''}" oninput="updateStyle('bottom', this.value + 'px')">
+            </div>
+          </div>
+          <div class="control-row">
+            <div class="control-item">
+              <label>Left (px)</label>
+              <input type="number" value="${parseInt(s.left) || ''}" oninput="updateStyle('left', this.value + 'px')">
+            </div>
+            <div class="control-item">
+              <label>Right (px)</label>
+              <input type="number" value="${parseInt(s.right) || ''}" oninput="updateStyle('right', this.value + 'px')">
+            </div>
+          </div>
+          <div class="control-item">
+            <label>Z-Index</label>
+            <input type="number" value="${s.zIndex || 10}" oninput="updateStyle('zIndex', this.value)">
+          </div>
+        </div>
+        
+        <!-- TIPOGRAFÍA -->
+        <div class="control-section">
+          <h3>🔤 Tipografía</h3>
+          <div class="control-item">
+            <label>Tamaño (px)</label>
+            <input type="number" value="${parseInt(s.fontSize) || 16}" oninput="updateStyle('fontSize', this.value + 'px')">
+          </div>
+          <div class="control-item">
+            <label>Fuente</label>
+            <select onchange="updateStyle('fontFamily', this.value)">
+              <option value="Arial Black" ${s.fontFamily?.includes('Arial') ? 'selected' : ''}>Arial Black</option>
+              <option value="Georgia" ${s.fontFamily?.includes('Georgia') ? 'selected' : ''}>Georgia</option>
+              <option value="Verdana" ${s.fontFamily?.includes('Verdana') ? 'selected' : ''}>Verdana</option>
+              <option value="Courier New" ${s.fontFamily?.includes('Courier') ? 'selected' : ''}>Courier New</option>
+              <option value="Impact" ${s.fontFamily?.includes('Impact') ? 'selected' : ''}>Impact</option>
+              <option value="Times New Roman" ${s.fontFamily?.includes('Times') ? 'selected' : ''}>Times New Roman</option>
+              <option value="Helvetica" ${s.fontFamily?.includes('Helvetica') ? 'selected' : ''}>Helvetica</option>
+            </select>
+          </div>
+          <div class="control-item">
+            <label>Peso (Font Weight)</label>
+            <select onchange="updateStyle('fontWeight', this.value)">
+              <option value="300" ${s.fontWeight === '300' ? 'selected' : ''}>Light (300)</option>
+              <option value="400" ${s.fontWeight === '400' ? 'selected' : ''}>Normal (400)</option>
+              <option value="600" ${s.fontWeight === '600' ? 'selected' : ''}>Semi Bold (600)</option>
+              <option value="700" ${s.fontWeight === '700' ? 'selected' : ''}>Bold (700)</option>
+              <option value="900" ${s.fontWeight === '900' ? 'selected' : ''}>Black (900)</option>
+            </select>
+          </div>
+          <div class="control-item">
+            <label>Alineación</label>
+            <select onchange="updateStyle('textAlign', this.value)">
+              <option value="left" ${s.textAlign === 'left' ? 'selected' : ''}>Izquierda</option>
+              <option value="center" ${s.textAlign === 'center' ? 'selected' : ''}>Centro</option>
+              <option value="right" ${s.textAlign === 'right' ? 'selected' : ''}>Derecha</option>
+              <option value="justify" ${s.textAlign === 'justify' ? 'selected' : ''}>Justificado</option>
+            </select>
+          </div>
+          <div class="control-item">
+            <label>Transformación</label>
+            <select onchange="updateStyle('textTransform', this.value)">
+              <option value="none" ${s.textTransform === 'none' ? 'selected' : ''}>Normal</option>
+              <option value="uppercase" ${s.textTransform === 'uppercase' ? 'selected' : ''}>MAYÚSCULAS</option>
+              <option value="lowercase" ${s.textTransform === 'lowercase' ? 'selected' : ''}>minúsculas</option>
+              <option value="capitalize" ${s.textTransform === 'capitalize' ? 'selected' : ''}>Capitalizar</option>
+            </select>
+          </div>
+          <div class="control-item">
+            <label>Letter Spacing (px)</label>
+            <input type="number" value="${parseInt(s.letterSpacing) || 0}" oninput="updateStyle('letterSpacing', this.value + 'px')">
+          </div>
+          <div class="control-item">
+            <label>Line Height</label>
+            <input type="number" step="0.1" value="${parseFloat(s.lineHeight) || 1.2}" oninput="updateStyle('lineHeight', this.value)">
+          </div>
+        </div>
+        
+        <!-- COLORES -->
+        <div class="control-section">
+          <h3>🎨 Colores</h3>
+          <div class="control-item">
+            <label>Color de Texto</label>
+            <input type="color" value="${rgbToHex(s.color)}" oninput="updateStyle('color', this.value)">
+          </div>
+          <div class="control-item">
+            <label>Color de Fondo</label>
+            <input type="color" value="${rgbToHex(s.backgroundColor)}" oninput="updateStyle('backgroundColor', this.value)">
+          </div>
+        </div>
+        
+        <!-- BORDES -->
+        <div class="control-section">
+          <h3>🔲 Bordes</h3>
+          <div class="control-item">
+            <label>Borde (completo)</label>
+            <input type="text" value="${s.border || 'none'}" placeholder="ej: 5px solid #ffffff" oninput="updateStyle('border', this.value)">
+          </div>
+          <div class="control-row">
+            <div class="control-item">
+              <label>Grosor (px)</label>
+              <input type="number" value="${parseInt(s.borderWidth) || 0}" oninput="updateStyle('borderWidth', this.value + 'px')">
+            </div>
+            <div class="control-item">
+              <label>Border Radius (px)</label>
+              <input type="number" value="${parseInt(s.borderRadius) || 0}" oninput="updateStyle('borderRadius', this.value + 'px')">
+            </div>
+          </div>
+          <div class="control-item">
+            <label>Color del Borde</label>
+            <input type="color" value="${rgbToHex(s.borderColor)}" oninput="updateStyle('borderColor', this.value)">
+          </div>
+          <div class="control-item">
+            <label>Estilo del Borde</label>
+            <select onchange="updateStyle('borderStyle', this.value)">
+              <option value="solid" ${s.borderStyle === 'solid' ? 'selected' : ''}>Sólido</option>
+              <option value="dashed" ${s.borderStyle === 'dashed' ? 'selected' : ''}>Discontinuo</option>
+              <option value="dotted" ${s.borderStyle === 'dotted' ? 'selected' : ''}>Punteado</option>
+              <option value="double" ${s.borderStyle === 'double' ? 'selected' : ''}>Doble</option>
+              <option value="none" ${s.borderStyle === 'none' ? 'selected' : ''}>Ninguno</option>
+            </select>
+          </div>
+        </div>
+        
+        <!-- DIMENSIONES -->
+        <div class="control-section">
+          <h3>📐 Dimensiones</h3>
+          <div class="control-row">
+            <div class="control-item">
+              <label>Ancho (px)</label>
+              <input type="number" value="${parseInt(s.width) || ''}" oninput="updateStyle('width', this.value + 'px')">
+            </div>
+            <div class="control-item">
+              <label>Alto (px)</label>
+              <input type="number" value="${parseInt(s.height) || ''}" oninput="updateStyle('height', this.value + 'px')">
+            </div>
+          </div>
+          <div class="control-item">
+            <label>Padding (ej: 20px 40px)</label>
+            <input type="text" value="${s.padding || '0'}" oninput="updateStyle('padding', this.value)">
+          </div>
+          <div class="control-item">
+            <label>Margin (ej: 10px)</label>
+            <input type="text" value="${s.margin || '0'}" oninput="updateStyle('margin', this.value)">
+          </div>
+        </div>
+        
+        <!-- EFECTOS -->
+        <div class="control-section">
+          <h3>✨ Efectos</h3>
+          <div class="control-item">
+            <label>Opacidad (0-1)</label>
+            <input type="number" step="0.1" min="0" max="1" value="${parseFloat(s.opacity) || 1}" oninput="updateStyle('opacity', this.value)">
+          </div>
+          <div class="control-item">
+            <label>Transform (ej: rotate(15deg))</label>
+            <input type="text" value="${s.transform || ''}" oninput="updateStyle('transform', this.value)">
+          </div>
+          <div class="control-item">
+            <label>Box Shadow</label>
+            <input type="text" value="${s.boxShadow || 'none'}" placeholder="ej: 0 10px 30px rgba(0,0,0,0.5)" oninput="updateStyle('boxShadow', this.value)">
+          </div>
+          <div class="control-item">
+            <label>Text Shadow</label>
+            <input type="text" value="${s.textShadow || 'none'}" placeholder="ej: 2px 2px 4px rgba(0,0,0,0.5)" oninput="updateStyle('textShadow', this.value)">
+          </div>
+        </div>
+      `;
+      
+      document.getElementById('controlsContainer').innerHTML = controlsHTML;
+    }
+    
+    function updateStyle(prop, value) {
+      if (!currentElement) return;
+      currentElement.style[prop] = value;
+    }
+    
+    function updateProp(prop, value) {
+      if (!currentElement) return;
+      
+      if (prop === 'content') {
+        const child = currentElement.querySelector('span, a');
+        if (child) child.textContent = value;
+      } else if (prop === 'link') {
+        const a = currentElement.querySelector('a');
+        if (a) a.href = value;
+      }
+    }
+    
+    // Drag and drop
+    document.addEventListener('mousedown', (e) => {
+      if (!e.target.closest('.preview-element')) return;
+      
+      const el = e.target.closest('.preview-element');
+      isDragging = true;
+      startX = e.clientX;
+      startY = e.clientY;
+      origX = parseInt(el.style.left) || 0;
+      origY = parseInt(el.style.top) || 0;
+      
+      selectElement(el.dataset.id);
+    });
+    
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging || !currentElement) return;
+      e.preventDefault();
+      
+      const newX = origX + (e.clientX - startX);
+      const newY = origY + (e.clientY - startY);
+      
+      currentElement.style.left = newX + 'px';
+      currentElement.style.top = newY + 'px';
+      currentElement.style.right = 'auto';
+      currentElement.style.bottom = 'auto';
+    });
+    
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
+    
+    async function saveDesign() {
+      const elements = [];
+      document.querySelectorAll('.preview-element').forEach(el => {
+        const child = el.querySelector('span, a');
+        elements.push({
+          id: el.dataset.id,
+          type: el.dataset.type,
+          content: child?.textContent || '',
+          link: el.querySelector('a')?.href || '',
+          styles: {
+            position: 'absolute',
+            top: el.style.top,
+            bottom: el.style.bottom,
+            left: el.style.left,
+            right: el.style.right,
+            transform: el.style.transform,
+            width: el.style.width,
+            height: el.style.height,
+            padding: el.style.padding,
+            margin: el.style.margin,
+            fontSize: el.style.fontSize,
+            fontFamily: el.style.fontFamily,
+            fontWeight: el.style.fontWeight,
+            color: el.style.color,
+            backgroundColor: el.style.backgroundColor,
+            border: el.style.border,
+            borderWidth: el.style.borderWidth,
+            borderColor: el.style.borderColor,
+            borderStyle: el.style.borderStyle,
+            borderRadius: el.style.borderRadius,
+            textTransform: el.style.textTransform,
+            letterSpacing: el.style.letterSpacing,
+            lineHeight: el.style.lineHeight,
+            textAlign: el.style.textAlign,
+            textDecoration: el.style.textDecoration,
+            zIndex: el.style.zIndex,
+            opacity: el.style.opacity,
+            boxShadow: el.style.boxShadow,
+            textShadow: el.style.textShadow
+          }
+        });
+      });
+      
+      const statusEl = document.getElementById('statusMessage');
+      
+      try {
+        const res = await fetch('/api/save-design.json', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            page: 'index',
+            elements,
+            backgroundImage: '${pageConfig.backgroundImage}'
+          })
+        });
+        
+        if (res.ok) {
+          statusEl.textContent = '✅ Cambios guardados correctamente';
+          statusEl.className = 'status-message success';
+          setTimeout(() => { statusEl.className = 'status-message'; }, 3000);
+        } else {
+          statusEl.textContent = '❌ Error al guardar';
+          statusEl.className = 'status-message error';
+        }
+      } catch (err) {
+        statusEl.textContent = '❌ Error: ' + err.message;
+        statusEl.className = 'status-message error';
+      }
+    }
+    
+    function rgbToHex(rgb) {
+      if (!rgb || rgb === 'transparent' || rgb === 'rgba(0, 0, 0, 0)') return '#000000';
+      if (rgb.startsWith('#')) return rgb;
+      const m = rgb.match(/\d+/g);
+      if (!m) return '#000000';
+      return '#' + m.slice(0,3).map(x => parseInt(x).toString(16).padStart(2,'0')).join('');
+    }
+  </script>
+</body>
+</html>

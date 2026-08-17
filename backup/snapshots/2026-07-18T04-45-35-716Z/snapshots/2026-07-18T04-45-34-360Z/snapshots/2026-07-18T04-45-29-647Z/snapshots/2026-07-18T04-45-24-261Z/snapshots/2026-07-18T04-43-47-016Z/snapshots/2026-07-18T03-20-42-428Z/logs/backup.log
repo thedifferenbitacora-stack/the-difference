@@ -1,0 +1,14 @@
+[2026-07-18T00-41-33-386Z] Backup completado:
+✅ backup/memory
+✅ backup/sources
+✅ backup/foundation
+❌ backup/snapshots: Invalid src or dest: cp returned EINVAL (cannot copy C:\Users\PENSAMIENTO AUTISTA\the-difference\backup\snapshots to a subdirectory of self C:\Users\PENSAMIENTO AUTISTA\the-difference\backup\snapshots\2026-07-18T00-41-33-386Z\snapshots) C:\Users\PENSAMIENTO AUTISTA\the-difference\backup\snapshots\2026-07-18T00-41-33-386Z\snapshots
+✅ backup/logs
+
+[2026-07-18T03-18-24-979Z] Backup completado:
+✅ backup/memory
+✅ backup/sources
+✅ backup/foundation
+❌ backup/snapshots: Invalid src or dest: cp returned EINVAL (cannot copy C:\Users\PENSAMIENTO AUTISTA\the-difference\backup\snapshots to a subdirectory of self C:\Users\PENSAMIENTO AUTISTA\the-difference\backup\snapshots\2026-07-18T03-18-24-979Z\snapshots) C:\Users\PENSAMIENTO AUTISTA\the-difference\backup\snapshots\2026-07-18T03-18-24-979Z\snapshots
+✅ backup/logs
+
