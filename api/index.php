@@ -1,13 +1,7 @@
 <?php
-/**
- * THE DIFFERENCE · Front Controller (Vercel)
- */
 $uri = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 $uri = rawurldecode($uri);
-
-if ($uri === '/' || $uri === '') {
-    $uri = '/portada.php';
-}
+if ($uri === '/' || $uri === '') { $uri = '/portada.php'; }
 
 $file = __DIR__ . '/..' . $uri;
 
@@ -18,4 +12,4 @@ if (preg_match('~\.php$~i', $uri) && is_file($file)) {
 }
 
 http_response_code(404);
-echo '<h1>404 · Página no encontrada</h1>';
+echo '<h1>404 · no encontrado</h1>';
