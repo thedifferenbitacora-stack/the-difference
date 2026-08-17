@@ -1,0 +1,14 @@
+# ── VERCEL IGNORE · excluir del deploy ──
+package.json
+package-lock.json
+tsconfig.json
+astro.config.mjs
+src/
+.astro/
+node_modules/
+
+# Media pesada
+output/
+videos/
+*.mp4
+*.mp3
